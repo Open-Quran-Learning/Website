@@ -1,34 +1,34 @@
-import React, { Component } from "react";
-import "./App.css";
-import Header from "./components/HeaderComponent";
-import Footer from "./components/FooterComponent";
-import Home from "./components/HomeComponent";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import SignUpForm from './pages/SignUpForm';
+import SignInForm from './pages/SignInForm';
+
+import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  HomePage = () => {
-    return <Home />;
-  };
-
   render() {
     return (
-      <BrowserRouter>
+      <Router basename="/react-auth-ui/">
         <div className="App">
-          <Header />
+          <div className="App__Aside"></div>
+          <div className="App__Form">
+            <div className="PageSwitcher">
+                <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
+                <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
+              </div>
 
-          <Switch>
-            <Route path="/home" component={this.HomePage} />
-            <Redirect to="/home" />
-          </Switch>
+              <div className="FormTitle">
+                  <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
+              </div>
 
-          <Footer />
+              <Route exact path="/" component={SignUpForm}>
+              </Route>
+              <Route path="/sign-in" component={SignInForm}>
+              </Route>
+          </div>
+
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
