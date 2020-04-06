@@ -76,8 +76,7 @@ class SignUpForm extends Component {
                 <input type='radio' id='male' checked='checked' name='gender' value="Male" onChange={this.handleChange}></input>
                 <label for='male'>Male</label>
                 <input type='radio' id='female' name='gender' value="Female" onChange={this.handleChange}></input>
-                <label for='female'>Female</label>
-                        
+                <label for='female'>Female</label>                       
               </div>
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="address">ADDRESS</label>
@@ -86,8 +85,7 @@ class SignUpForm extends Component {
                 <input type="state" className="FormField__Input" id="state" placeholder="State" name="state" value={this.state.state} onChange={this.handleChange}></input>
                 <input type="zip" className="FormField__Input" id="Zip" placeholder="Zip" name="Zip" value={this.state.Zip} onChange={this.handleChange}></input >
                 <input type="country" className="FormField__Input" id="country" placeholder="Country" name="country" value={this.state.country} onChange={this.handleChange}></input>
-              </div>
-              
+              </div>             
               <div className="FormField">
                    <br></br>
                    <br></br>
