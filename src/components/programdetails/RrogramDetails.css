@@ -1,0 +1,153 @@
+.container {
+  width: 70%;
+  margin: auto;
+  margin-bottom: 0;
+}
+.clearfix {
+  clear: both;
+}
+
+/*header*/
+.header .slide {
+  background-color: #2dcc70;
+  height: auto;
+}
+
+.header .slide .intro {
+  padding-top: 50px;
+  text-align: center;
+  color: white;
+}
+
+.header .slide .intro h2 {
+  margin: auto;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+.header .slide .intro p {
+  line-height: 1.7;
+  margin: 10px 0 10px 0;
+}
+.header .slide .intro button {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  background: none;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  border: 1px solid white;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.header .slide .intro button:hover {
+  margin-top: 20px;
+  background-color: white;
+  margin-bottom: 40px;
+  font-size: 20px;
+  color: #2dcc70;
+  font-weight: bold;
+  border: 1px solid #2dcc70;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.header .slide .intro button:focus {
+  outline: 0;
+}
+
+.header .navbar {
+  background-color: #199b4f;
+  color: white;
+  overflow: hidden;
+}
+
+.header .navbar ul {
+  list-style: none;
+  padding-left: 0;
+  padding-right: 0;
+  overflow: hidden;
+  float: right !important;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 5px;
+}
+.header .navbar ul li {
+  float: left;
+  padding: 10px 20px;
+}
+.header .navbar ul li a {
+  color: #ffff;
+  text-decoration: none;
+}
+.header .navbar ul li.active a,
+.header .navbar ul li a:hover {
+  color: #252f31;
+}
+/*end header*/
+/*start program details*/
+.details {
+  overflow: hidden;
+  padding-top: 40px;
+  padding-bottom: 50px;
+  background-color: #f2f2f2;
+  margin: 70px 0;
+}
+.details .details_intro {
+  padding: 0 5px;
+}
+.details .details_intro h2 {
+  color: #2dcc70;
+  font-weight: bold;
+  margin: 0px 0 40px 20px;
+}
+.details .details_intro p {
+  color: #8a8a8a;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+/*end*/
+.content {
+  overflow: hidden;
+  padding-top: 40px;
+  padding-bottom: 50px;
+  background-color: #f2f2f2;
+  margin: 70px 0;
+}
+.content .content_intro {
+  padding: 0 5px;
+}
+.content .content_intro h2 {
+  color: #2dcc70;
+  font-weight: bold;
+  margin: 0px 0 40px 20px;
+}
+.content .content_intro p {
+  color: #8a8a8a;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+/*end*/
+.plan {
+  overflow: hidden;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #f2f2f2;
+  margin: 70px 0;
+}
+.plan .plan_intro {
+  padding: 0 5px;
+}
+.plan .plan_intro h2 {
+  color: #2dcc70;
+  font-weight: bold;
+  margin: 0px 0 40px 20px;
+}
+.plan .plan_intro p {
+  color: #8a8a8a;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
