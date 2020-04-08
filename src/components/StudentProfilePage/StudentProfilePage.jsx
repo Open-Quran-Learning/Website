@@ -1,31 +1,38 @@
 import React, { Component } from 'react';
+import "./style.css";
 
 class StudentProfilePage extends Component {
     state = {  }
     render() { 
         return ( 
-            <React.Fragment>
-                <img src/>
-            <h2>Name: User Name</h2>
-            <h4>BirthDay: dd/mm/yyyy</h4>
-            <h4>AAAAA@gmail.com</h4>
-            <label for="coursesInProgress">Courses in progress : </label>
-            <select id="coursesInProgress">
+                <div className="studentPage">
+                    <img className="studentImage" src="./assets/images/male.png" className="rounded-circle border border-success"/>
+            <h2 class="studentName">يوسف خالد يوسف</h2>
+            <br/>
+            <br/>
+            <h4> تاريخ الميلاد : ١٩٩٨/١/٢١ </h4>
+            <br/>
+            <br/>
+            <h4>yossef.k.y333@gmail.com : البريد الالكتروني</h4>
+            <br/>
+            <br/>
+            <select placeholder="choose" id="coursesInProgress">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
             </select>
+            <label for="coursesInProgress"> : البرامج التي تم التسجيل فيها</label>
             <br/>
-            <label for="savesCourses">Saved courses: </label>
+            <br/>
             <select id="savedCourses">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
             </select>
-            </React.Fragment>
-            
+            <label for="savesCourses"> : البرامج المسجلة لوقت لاحق</label>
+                </div>        
          );
     }
 }
