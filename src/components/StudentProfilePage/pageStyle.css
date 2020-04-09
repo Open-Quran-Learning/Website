@@ -1,0 +1,27 @@
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+
+
+.studentPage{
+    right: 150px;
+    color: #008600;
+    font-family: 'Droid Arabic Kufi', serif;   
+    text-align: right;
+    margin-right: 5%;
+    margin-top: 1%;
+}
+
+
+.studentImage{
+    margin: 100%;
+}
+
+.studentName{
+    font-size: 3em;
+    
+}
+
+label{
+    font-size: x-large;
+    margin: 0.5em;
+}
+    
