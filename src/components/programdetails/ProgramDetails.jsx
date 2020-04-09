@@ -9,16 +9,18 @@ function ProgramDetails(props) {
         <div className="slide">
           <div className="container">
             <div className="intro">
-              <h2>Program Name</h2>
+              <h2>اسم البرنامج</h2>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining
+                يُعدّ النوم جزءاً مهمّاً من الروتين اليومي للإنسان، حيث إنّ
+                النوم الصحي أمراً أساسيّاً لا يقل أهمية عن الحاجة لتناول الطعام
+                وشرب الماء؛ إذ إنّه يلعب دوراً مهمّاً في العديد من الوظائف
+                الحيوية في الجسم، فهو يُساعد على إزالة السموم التي تتراكم خلال
+                النهار من الدماغ، كما أنّه يؤثر في جميع أنسجة الجسم تقريباً بما
+                فيها الدماغ، والقلب، والرئتين، بالإضافة لدوره في عملية التمثيل
+                الغذائي، وتحسين المزاج، ودعم الجهاز المناعي، ومقاومة الأمراض،
+                والعديد من الأدوار الأخرى التي سيتمّ ذكرها لاحقاً في هذا المقال
               </p>
-              <button>Enroll Now</button>
+              <button>سجل الآن</button>
             </div>
           </div>
         </div>
@@ -27,16 +29,16 @@ function ProgramDetails(props) {
             <span></span>
             <ul>
               <li>
-                <a href="#details">Details</a>
+                <a href="#details">التفاصيل</a>
               </li>
               <li>
-                <a href="#content">Content</a>
+                <a href="#content">المحتوى</a>
               </li>
               <li>
-                <a href="#plan">Plan</a>
+                <a href="#plan">الجدول</a>
               </li>
               <li>
-                <a href="#feedback">Feedback</a>
+                <a href="#feedback">رأيك يهمنا</a>
               </li>
             </ul>
           </div>
@@ -44,67 +46,77 @@ function ProgramDetails(props) {
       </div>
       {/* // end header start program details// */}
 
-      <div className="details" id="details">
+      <div className="div" id="details">
         <div className="container">
-          <div className="details_intro">
-            <h2>Program Details</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining
+          <div className="intro">
+            <h2 className="programh2">تفاصيل البرنامج</h2>
+            <p className="programp">
+              يُعدّ النوم جزءاً مهمّاً من الروتين اليومي للإنسان، حيث إنّ النوم
+              الصحي أمراً أساسيّاً لا يقل أهمية عن الحاجة لتناول الطعام وشرب
+              الماء؛ إذ إنّه يلعب دوراً مهمّاً في العديد من الوظائف الحيوية في
+              الجسم، فهو يُساعد على إزالة السموم التي تتراكم خلال النهار من
+              الدماغ، كما أنّه يؤثر في جميع أنسجة الجسم تقريباً بما فيها الدماغ،
+              والقلب، والرئتين، بالإضافة لدوره في عملية التمثيل الغذائي، وتحسين
+              المزاج، ودعم الجهاز المناعي، ومقاومة الأمراض، والعديد من الأدوار
+              الأخرى التي سيتمّ ذكرها لاحقاً في هذا المقال
             </p>
           </div>
         </div>
       </div>
 
       {/* //end program details //start program content */}
-      <div className="content" id="content">
+      <div className="div" id="content">
         <div className="container">
-          <div className="content_intro">
-            <h2>Program Content</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining
+          <div className="intro">
+            <h2 className="programh2">محتوى البرنامج</h2>
+            <p className="programp">
+              يُعدّ النوم جزءاً مهمّاً من الروتين اليومي للإنسان، حيث إنّ النوم
+              الصحي أمراً أساسيّاً لا يقل أهمية عن الحاجة لتناول الطعام وشرب
+              الماء؛ إذ إنّه يلعب دوراً مهمّاً في العديد من الوظائف الحيوية في
+              الجسم، فهو يُساعد على إزالة السموم التي تتراكم خلال النهار من
+              الدماغ، كما أنّه يؤثر في جميع أنسجة الجسم تقريباً بما فيها الدماغ،
+              والقلب، والرئتين، بالإضافة لدوره في عملية التمثيل الغذائي، وتحسين
+              المزاج، ودعم الجهاز المناعي، ومقاومة الأمراض، والعديد من الأدوار
+              الأخرى التي سيتمّ ذكرها لاحقاً في هذا المقال
             </p>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining
+            <p className="programp">
+              يُعدّ النوم جزءاً مهمّاً من الروتين اليومي للإنسان، حيث إنّ النوم
+              الصحي أمراً أساسيّاً لا يقل أهمية عن الحاجة لتناول الطعام وشرب
+              الماء؛ إذ إنّه يلعب دوراً مهمّاً في العديد من الوظائف الحيوية في
+              الجسم، فهو يُساعد على إزالة السموم التي تتراكم خلال النهار من
+              الدماغ، كما أنّه يؤثر في جميع أنسجة الجسم تقريباً بما فيها الدماغ،
+              والقلب، والرئتين، بالإضافة لدوره في عملية التمثيل الغذائي، وتحسين
+              المزاج، ودعم الجهاز المناعي، ومقاومة الأمراض، والعديد من الأدوار
+              الأخرى التي سيتمّ ذكرها لاحقاً في هذا المقال
             </p>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining
+            <p className="programp">
+              يُعدّ النوم جزءاً مهمّاً من الروتين اليومي للإنسان، حيث إنّ النوم
+              الصحي أمراً أساسيّاً لا يقل أهمية عن الحاجة لتناول الطعام وشرب
+              الماء؛ إذ إنّه يلعب دوراً مهمّاً في العديد من الوظائف الحيوية في
+              الجسم، فهو يُساعد على إزالة السموم التي تتراكم خلال النهار من
+              الدماغ، كما أنّه يؤثر في جميع أنسجة الجسم تقريباً بما فيها الدماغ،
+              والقلب، والرئتين، بالإضافة لدوره في عملية التمثيل الغذائي، وتحسين
+              المزاج، ودعم الجهاز المناعي، ومقاومة الأمراض، والعديد من الأدوار
+              الأخرى التي سيتمّ ذكرها لاحقاً في هذا المقال
             </p>
           </div>
         </div>
       </div>
 
       {/*program plan*/}
-      <div className="plan" id="plan">
+      <div className="div" id="plan">
         <div className="container">
-          <div className="plan_intro">
-            <h2>Program Plan</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining
+          <div className="intro">
+            <h2 className="programh2">جدول البرنامج</h2>
+            <p className="programp">
+              يُعدّ النوم جزءاً مهمّاً من الروتين اليومي للإنسان، حيث إنّ النوم
+              الصحي أمراً أساسيّاً لا يقل أهمية عن الحاجة لتناول الطعام وشرب
+              الماء؛ إذ إنّه يلعب دوراً مهمّاً في العديد من الوظائف الحيوية في
+              الجسم، فهو يُساعد على إزالة السموم التي تتراكم خلال النهار من
+              الدماغ، كما أنّه يؤثر في جميع أنسجة الجسم تقريباً بما فيها الدماغ،
+              والقلب، والرئتين، بالإضافة لدوره في عملية التمثيل الغذائي، وتحسين
+              المزاج، ودعم الجهاز المناعي، ومقاومة الأمراض، والعديد من الأدوار
+              الأخرى التي سيتمّ ذكرها لاحقاً في هذا المقال
             </p>
           </div>
         </div>

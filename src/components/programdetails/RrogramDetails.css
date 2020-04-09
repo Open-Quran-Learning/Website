@@ -2,32 +2,38 @@
   width: 70%;
   margin: auto;
   margin-bottom: 0;
-}
-.clearfix {
-  clear: both;
+  font-family: "Droid Arabic Kufi", "Droid Sans", sans-serif;
+  font-size: 14px;
 }
 
 /*header*/
 .header .slide {
   background-color: #2dcc70;
   height: auto;
+  width: 100%;
+  text-align: center;
 }
 
 .header .slide .intro {
   padding-top: 50px;
-  text-align: center;
   color: white;
 }
 
 .header .slide .intro h2 {
+  color: White;
   margin: auto;
   font-size: 40px;
   font-weight: bold;
   padding: 10px 0;
+  text-align: right;
 }
 .header .slide .intro p {
+  color: #bbffc6;
   line-height: 1.7;
+  font-weight: bold;
+  font-size: 20px;
   margin: 10px 0 10px 0;
+  text-align: right;
 }
 .header .slide .intro button {
   margin-top: 20px;
@@ -59,22 +65,23 @@
 .header .navbar {
   background-color: #199b4f;
   color: white;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .header .navbar ul {
   list-style: none;
   padding-left: 0;
   padding-right: 0;
-  overflow: hidden;
-  float: right !important;
+  overflow: auto;
   font-weight: bold;
   font-size: 20px;
   margin-top: 5px;
+  text-align: right;
 }
 .header .navbar ul li {
-  float: left;
   padding: 10px 20px;
+  display: inline-block;
+  float: right;
 }
 .header .navbar ul li a {
   color: #ffff;
@@ -85,69 +92,32 @@
   color: #252f31;
 }
 /*end header*/
-/*start program details*/
-.details {
-  overflow: hidden;
+/*frame work*/
+.div {
   padding-top: 40px;
   padding-bottom: 50px;
   background-color: #f2f2f2;
   margin: 70px 0;
+  width: 100%;
 }
-.details .details_intro {
+
+.intro {
   padding: 0 5px;
 }
-.details .details_intro h2 {
+
+.programh2 {
   color: #2dcc70;
   font-weight: bold;
-  margin: 0px 0 40px 20px;
+  margin: 0px 20px 40px 0;
+  display: block;
+  text-align: right;
 }
-.details .details_intro p {
+.programp {
   color: #8a8a8a;
   padding: 20px;
   font-weight: bold;
   font-size: 20px;
+  text-align: right;
 }
-/*end*/
-.content {
-  overflow: hidden;
-  padding-top: 40px;
-  padding-bottom: 50px;
-  background-color: #f2f2f2;
-  margin: 70px 0;
-}
-.content .content_intro {
-  padding: 0 5px;
-}
-.content .content_intro h2 {
-  color: #2dcc70;
-  font-weight: bold;
-  margin: 0px 0 40px 20px;
-}
-.content .content_intro p {
-  color: #8a8a8a;
-  padding: 20px;
-  font-weight: bold;
-  font-size: 20px;
-}
-/*end*/
-.plan {
-  overflow: hidden;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  background-color: #f2f2f2;
-  margin: 70px 0;
-}
-.plan .plan_intro {
-  padding: 0 5px;
-}
-.plan .plan_intro h2 {
-  color: #2dcc70;
-  font-weight: bold;
-  margin: 0px 0 40px 20px;
-}
-.plan .plan_intro p {
-  color: #8a8a8a;
-  padding: 20px;
-  font-weight: bold;
-  font-size: 20px;
-}
+
+/*end frame work*/
