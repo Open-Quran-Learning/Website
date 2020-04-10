@@ -1,0 +1,123 @@
+.container {
+  width: 70%;
+  margin: auto;
+  margin-bottom: 0;
+  font-family: "Droid Arabic Kufi", "Droid Sans", sans-serif;
+  font-size: 14px;
+}
+
+/*header*/
+.header .slide {
+  background-color: #2dcc70;
+  height: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.header .slide .intro {
+  padding-top: 50px;
+  color: white;
+}
+
+.header .slide .intro h2 {
+  color: White;
+  margin: auto;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 10px 0;
+  text-align: right;
+}
+.header .slide .intro p {
+  color: #bbffc6;
+  line-height: 1.7;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 10px 0 10px 0;
+  text-align: right;
+}
+.header .slide .intro button {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  background: none;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  border: 1px solid white;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.header .slide .intro button:hover {
+  margin-top: 20px;
+  background-color: white;
+  margin-bottom: 40px;
+  font-size: 20px;
+  color: #2dcc70;
+  font-weight: bold;
+  border: 1px solid #2dcc70;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.header .slide .intro button:focus {
+  outline: 0;
+}
+
+.header .navbar {
+  background-color: #199b4f;
+  color: white;
+  overflow: auto;
+}
+
+.header .navbar ul {
+  list-style: none;
+  padding-left: 0;
+  padding-right: 0;
+  overflow: auto;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 5px;
+  text-align: right;
+}
+.header .navbar ul li {
+  padding: 10px 20px;
+  display: inline-block;
+  float: right;
+}
+.header .navbar ul li a {
+  color: #ffff;
+  text-decoration: none;
+}
+.header .navbar ul li.active a,
+.header .navbar ul li a:hover {
+  color: #252f31;
+}
+/*end header*/
+/*frame work*/
+.div {
+  padding-top: 40px;
+  padding-bottom: 50px;
+  background-color: #f2f2f2;
+  margin: 70px 0;
+  width: 100%;
+}
+
+.intro {
+  padding: 0 5px;
+}
+
+.programh2 {
+  color: #2dcc70;
+  font-weight: bold;
+  margin: 0px 20px 40px 0;
+  display: block;
+  text-align: right;
+}
+.programp {
+  color: #8a8a8a;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: right;
+}
+
+/*end frame work*/
