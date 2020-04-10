@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Header from "./components/HeaderComponent";
 import Footer from "./components/FooterComponent";
-import Home from "./components/HomeComponent";
+import Home from "./components/HomeComponent/HomeComponent";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 class App extends Component {
