@@ -76,4 +76,11 @@ const CheckedAnswer = (props) => (
   </div>
 );
 
+const WrittenQuestion = ({ questionTitle, isOptional}) => (
+  <div className="writtenQuestion">
+    <div className="questionText">{questionTitle}</div>
+    <textarea required={isOptional} class="form-control" rows="5" id="comment"></textarea>
+  </div>
+);
+
 export default Quiz;
