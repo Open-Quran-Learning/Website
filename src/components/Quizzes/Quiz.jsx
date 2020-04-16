@@ -31,6 +31,7 @@ const MCQQuestion = ({ questionTitle, mark, answers }) => {
     <div className="mcqQuestion">
       <div className="questionText">{questionTitle}</div>
       <MCQAnswers onAnswered={setAnsweredCorrectly} answers={answers} />
+      <div className="separator"></div>
     </div>
   );
 };
@@ -80,6 +81,7 @@ const WrittenQuestion = ({ questionTitle, isOptional}) => (
   <div className="writtenQuestion">
     <div className="questionText">{questionTitle}</div>
     <textarea required={isOptional} class="form-control" rows="5" id="comment"></textarea>
+    <div className="separator"></div>
   </div>
 );
 

@@ -9,10 +9,6 @@
 .writtenQuestion,
 .mcqQuestion {
   flex: 1 1 auto;
-  border-radius: 1%;
-  border-color: rgba(165, 42, 42, 0.65);
-  border-width: 2px;
-  border-style: dashed;
   margin: 1%;
   padding: 1%;
   display: flex;
@@ -41,4 +37,10 @@
   font-family: "Droid Arabic Kufi", serif;
   font-size: small;
   margin: 4px;
+}
+
+.separator{
+    height: 1px;
+    background-color: rgba(165, 42, 42, 0.2);
+    margin: 1%;
 }
