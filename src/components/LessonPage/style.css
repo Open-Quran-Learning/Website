@@ -1,0 +1,79 @@
+.video{
+    margin: 3%;
+    width: 55%;
+    height: 35em;
+    display: inline-block;
+}
+
+.lessonName{
+    margin-top: 2%;
+    color: #328f1b;
+    text-align: center;
+}
+
+.sideBarLessons{
+    border-radius: 1%;
+    border-color: #328f1b;
+    border-style: solid;
+    padding: 1em;
+    height: 35em;
+    margin: 3%;
+    float: right;
+    width: 20%;
+    display: inline-block;
+}
+
+.sideBarHead{
+    color:#328f1b;
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 10%;
+}
+
+.noData{
+    opacity: 0.4;
+    font-size: 2em;
+    color: #328f1b;
+    text-align: center;
+}
+
+.ref{
+    color: #328f1b;
+    font-size: 150%;
+}
+
+.buttons{
+    float: right;
+    display: block;
+}
+
+.article{
+    display: block;
+    text-align: center;
+}
+
+@media screen and (max-width: 1000px){
+    .sideBarLessons{
+        display: none;
+    }
+
+    .sideBar{
+        display: none;
+    }
+
+    .buttons{
+        display: block;
+        margin-right: 22%;
+    }
+
+    .video{
+        margin-left: 10%;
+        width:80%;
+        height: 30em;
+    }
+}
+
+
+
+
+
