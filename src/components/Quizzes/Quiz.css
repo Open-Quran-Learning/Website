@@ -1,0 +1,46 @@
+.mcqQuiz {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: auto;
+}
+
+.writtenQuestion,
+.mcqQuestion {
+  flex: 1 1 auto;
+  margin: 1%;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.questionText {
+  flex: 2 1 auto;
+  color: brown;
+  font-family: "Droid Arabic Kufi", serif;
+  font-weight: bold;
+}
+
+.answer {
+  flex: 1 1 auto;
+  background: none;
+}
+
+.answer label {
+  font-family: "Droid Arabic Kufi", serif;
+  font-size: small;
+}
+
+.answer input {
+  font-family: "Droid Arabic Kufi", serif;
+  font-size: small;
+  margin: 4px;
+}
+
+.separator{
+    height: 1px;
+    background-color: rgba(165, 42, 42, 0.2);
+    margin: 1%;
+}
