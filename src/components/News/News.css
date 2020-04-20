@@ -1,0 +1,18 @@
+.news_container {
+  text-align: right;
+}
+
+.news_borders {
+  width: "100%";
+  height: "100%";
+  border-width: "5px";
+}
+
+.news_details {
+  padding-top: 5%;
+  padding-left: 5%;
+}
+
+.news_header {
+  padding-right: 5%;
+}
