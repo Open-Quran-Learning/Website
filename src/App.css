@@ -11,7 +11,7 @@
 }
 
 .footer {
-  background-color: #757575;
+  background-color: #1e8b6e;
   margin: 0px auto;
   padding: 20px 0px 20px 0px;
 }
@@ -23,5 +23,18 @@ address {
 }
 
 .navbar-dark {
-  background-color: #000000;
+  background-color: #1fb78e;
+}
+.nav-link {
+  color: white;
+}
+.nav-link:hover {
+  color: #252f31;
+}
+
+a {
+  color: white;
+}
+a:hover {
+  color: #0f0f0f;
 }
