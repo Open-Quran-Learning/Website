@@ -23,19 +23,9 @@
     color: #09d3ac;
   }
 
- 
-
 * {
   box-sizing: border-box;
 }
-
-
-
- html, .App, #root, .auth-wrapper {
-  width: 100%;
-  height: 108%;
-}
-
 
 .auth-wrapper {
   display: flex;
