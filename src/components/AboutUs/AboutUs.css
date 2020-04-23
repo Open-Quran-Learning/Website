@@ -1,0 +1,26 @@
+.aboutus {
+  text-align: center;
+
+  font-family: "Droid Arabic Kufi", "Droid Sans", sans-serif;
+}
+.aboutus h1 {
+  color: #1e8b6e;
+  font-size: 3.5em;
+}
+
+.aboutus p {
+  color: #252f31;
+  font-size: 1.5em;
+}
+
+@media screen and (max-width: 600px) {
+  .aboutus h1 {
+    color: #1e8b6e;
+    font-size: 1.5em;
+  }
+
+  .aboutus p {
+    color: #252f31;
+    font-size: 1.2em;
+  }
+}
