@@ -1,0 +1,94 @@
+.container {
+  width: 70%;
+  margin: auto;
+  font-family: "Droid Arabic Kufi", "Droid Sans", sans-serif;
+}
+.header {
+  background-color: #2dcc70;
+  height: auto;
+  text-align: center;
+  padding: 0.5em;
+  margin: 1% 1%;
+}
+.header h2 {
+  color: White;
+  margin: auto;
+  font-weight: bold;
+  padding: 0.5% 0%;
+}
+
+.course {
+  background-color: #f2f2f2;
+  margin: 3em 0;
+  width: 100%;
+  padding: 0.5em;
+  text-align: center;
+}
+.course h2 {
+  color: #2dcc70;
+  font-weight: bold;
+  display: block;
+  background-color: rgb(53, 53, 53);
+  padding: 0.5em;
+}
+.course hr {
+  width: 80%;
+  border-width: 0.3em;
+  border-color: #2dcc70;
+}
+.course p {
+  color: #8a8a8a;
+  padding: 2em;
+  font-weight: bold;
+  font-size: 1.4em;
+  text-align: right;
+}
+
+.course button {
+  margin-top: 2em;
+  background-color: white;
+  margin-bottom: 1em;
+  font-size: 1.5em;
+  color: #2dcc70;
+  font-weight: bold;
+  border: 0.1em solid #2dcc70;
+  padding: 0.5em 1.25em;
+  cursor: pointer;
+}
+
+.course button:hover {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  background-color: #2dcc70;
+  font-size: 1.5em;
+  color: white;
+  font-weight: bold;
+  border: 0.1em solid white;
+  padding: 0.5em 1.25em;
+  cursor: pointer;
+}
+
+.course button:focus {
+  outline: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: auto;
+  }
+  .course h2 {
+    font-size: 1.5em;
+  }
+  .course p {
+    font-size: 1em;
+    padding: 0.5em;
+  }
+  .course button {
+    font-size: 1.5em;
+    padding: 0.5em;
+  }
+  .course button:hover {
+    font-size: 1.5em;
+    padding: 0.5em;
+  }
+}
