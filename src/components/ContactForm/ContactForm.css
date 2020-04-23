@@ -1,18 +1,33 @@
+.topic{
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+}
+
 .messageList {
     float: right;
-    width: 20%;
-    border-radius: 0.5em;
+    width: 15%;
+    height: 2em;
+    border-radius: 1em;
     margin-top: 1.2em;
+}
+
+
+#userMessage{
+    width: 50%;
+    height: 15em;       
 }
 
 .listHeader {
     display: inline-block;
     float: right;
+    color: #2f7026;
 }
 
 .messageBox {
     display: block;
     text-align: center;
+    color: #2f7026;
 }
 
 .center{
@@ -22,6 +37,21 @@
 }
 
 .submitButton {
-    
-    
+}
+
+@media screen and (max-width: 800px){
+
+    .listHeader{
+        position: static;
+    }
+
+    .messageList{
+        width: 50%;
+        display: block;
+    }
+
+    #userMessage{
+        width: 75%;
+        height: 10em;        
+    }
 }

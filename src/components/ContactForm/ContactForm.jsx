@@ -24,20 +24,22 @@ class ContactForm extends Component {
     render() { 
         return (  
             <React.Fragment>
-                <label for="messageList" className="listHeader">موضوع الرسالة  </label>
-                <select id="messageList" className="messageList" onChange={this.handleListChange}>
-                    <option value="برنامج">برنامج</option>
-                    <option value="كورس">كورس</option>
-                    <option value="درس">درس</option>
-                    <option value="معلم">معلم</option>
-                    <option value="أخرى">أخرى</option>
-                </select>
+                <div className="topic">
+                    <label for="messageList" className="listHeader">موضوع الرسالة  </label>
+                    <select id="messageList" className="messageList" onChange={this.handleListChange}>
+                        <option value="برنامج">برنامج</option>
+                        <option value="كورس">كورس</option>
+                        <option value="درس">درس</option>
+                        <option value="معلم">معلم</option>
+                        <option value="أخرى">أخرى</option>
+                    </select>
+                </div>
                 <br/>
                 <br/>
                 <hr/>
                 <div className="messageBox"> 
                     <h3 for="userMessage">اكتب رسالتك هنا</h3>
-                    <textarea id="userMessage" onChange={this.handleMessageChange} rows="8" cols="60"/>
+                    <textarea id="userMessage" onChange={this.handleMessageChange} />
                 </div>
                 <br/>
                 <div className="center">
