@@ -24,10 +24,15 @@
     color: #2f7026;
 }
 
+.emailForm{
+    display: block;
+    text-align: center;
+}
+
 .messageBox {
     display: block;
     text-align: center;
-    color: #2f7026;
+    color: #6ba863;
 }
 
 .center{
@@ -37,6 +42,14 @@
 }
 
 .submitButton {
+}
+
+#userMail{
+    border-radius: 1em;
+}
+
+.enterMail{
+    color: #2f7026;
 }
 
 @media screen and (max-width: 800px){
