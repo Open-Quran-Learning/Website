@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./login.css"
+import Guardian from "./GuardianComponent";
 
-export default class RegistrationComponent extends Component {
+export default class Registration extends Component {
 
     constructor() {
         super();
@@ -10,11 +11,15 @@ export default class RegistrationComponent extends Component {
             email: '',
             password: '',
             name: '',
-            guardianname: '',
             phone: '',
             birthday: '',
             gender: '',
-            country: ''
+            country: '',
+            guardianemail: '',          
+            guardianname: '',
+            guardianphone: '',
+            age:'',
+            legal:''
 
             
         };
@@ -33,17 +38,34 @@ export default class RegistrationComponent extends Component {
         });
     }
 
+    
     handleSubmit(e) {
         e.preventDefault();
 
+        
+
         console.log('The form was submitted with the following data:');
         console.log(this.state);
+
+
+
+        
+        let birthYear = Number(this.state.birthday.split('-')[0]);
+        let currentYear = new Date().getFullYear();
+        let age = currentYear - birthYear;
+        let legal = age > 18;
+        console.log(age);
+        console.log(legal);
+       
+        
+       
         
     }
 
     render() {
+        
         return (
-            <div className="App">
+            <div className="Con">
             <div className="auth-wrapper">
             <div className="auth-inner">
             <form onSubmit={this.handleSubmit}>
@@ -54,10 +76,7 @@ export default class RegistrationComponent extends Component {
                     <input type="text" id="name" className="form-control" placeholder="اسم المستخدم" name="name" value={this.state.name} onChange={this.handleChange} />
                 </div>
 
-                <div className="form-group">
-                    <label>اسم ولى الأمر</label>
-                    <input type="text" id="guardianname" className="form-control" placeholder="ادخل اسم ولى أمرك" name="guardianname" value={this.state.guardianname} onChange={this.handleChange}/>
-                </div>
+               
 
                 <div className="form-group">
                     <label>البريد الالكترونى</label>
@@ -77,6 +96,21 @@ export default class RegistrationComponent extends Component {
                 <div className="form-group">
                     <label>تاريخ الميلاد</label>
                     <input type="date" id="bday" className="form-control"  name="birthday" value={this.state.birthday} onChange={this.handleChange}/>
+                </div>
+
+                <div className="form-group">
+                    <label>اسم ولى الأمر</label>
+                    <input type="text" id="guardianname" className="form-control" placeholder="ادخل اسم ولى أمرك" name="guardianname" value={this.state.guardianname} onChange={this.handleChange}/>
+                </div>
+
+                <div className="form-group">
+                    <label>البريد الالكترونى لولى الأمر</label>
+                    <input type="email" id="guardianemail" className="form-control" placeholder="ادخل البريد الالكترونى الخاص بولى الأمر" name="guardianemail" value={this.state.guardianemail} onChange={this.handleChange}/>
+                </div>
+
+                <div className="form-group">
+                    <label>رقم الهاتف لولى الأمر</label>
+                    <input type="tel" id="guardianphone" className="form-control" placeholder="ادخل رقم الهاتف الخاص بولى الأمر" name="guardianphone" value={this.state.guardianphone} onChange={this.handleChange}/>
                 </div>
 
                 <div className="form-group">
@@ -332,13 +366,14 @@ export default class RegistrationComponent extends Component {
 
                 <div className="form-group">
                     <label>النوع</label>
-                    <br></br>
+                    <br></br> <br></br>
                     <input type="radio" id="male"   name="gender" value="Male" onChange={this.handleChange}/>
                     <label for='male'>ذكر</label>
                     <br></br>
                     <input type="radio" id="female"   name="gender" value="Female" onChange={this.handleChange}/>
                     <label for='male'>أنثى</label>
                 </div>
+
 
 
                 <button type="submit" className="btn btn-primary btn-block">التسجيل</button>

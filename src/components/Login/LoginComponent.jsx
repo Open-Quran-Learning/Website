@@ -35,7 +35,7 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="Con">
             <div className="auth-wrapper">
             <div className="auth-inner">
             <form  onSubmit={this.handleSubmit}>
@@ -51,13 +51,7 @@ export default class Login extends Component {
                     <input type="password" id="password" className="form-control" placeholder="ادخل كلمة المرور الخاص بك"  name="password" value={this.state.password} onChange={this.handleChange}/>
                 </div>
 
-                <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                        <label className="custom-control-label" htmlFor="customCheck1">تذكرنى</label>
-                    </div>
-                </div>
-
+              
                 <button type="submit" className="btn btn-primary btn-block">تسجيل الدخول</button>
                 
             </form>

@@ -1,12 +1,12 @@
-.App {
+.Con {
     text-align: center;
   }
   
-  .App-logo {
+  .Con-logo {
     height: 40vmin;
   }
   
-  .App-header {
+  .Con-header {
     background-color: #282c34;
     min-height: 100vh;
     display: flex;
@@ -17,7 +17,7 @@
     color: white;
   }
   
-  .App-link {
+  .Con-link {
     color: #09d3ac;
   }
 
@@ -27,7 +27,7 @@
   box-sizing: border-box;
 }
 body {
-  background: #1C8EF9 !important;
+  background: white !important;
   min-height: 100vh;
   display: flex;
   font-weight: 400;
@@ -41,7 +41,7 @@ h1,h2,h3,h4,h5,h6,label,span {
 
 body, html, .App, #root, .auth-wrapper {
   width: 100%;
-  height: 106.6%;
+  height: 108%;
 }
 
 .navbar-light {
@@ -53,12 +53,14 @@ body, html, .App, #root, .auth-wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  text-align: left;
+  text-align: right;
 }
 
 .auth-inner {
   width: 450px;
   margin: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
   background: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   padding: 40px 55px 45px 55px;
@@ -80,7 +82,9 @@ body, html, .App, #root, .auth-wrapper {
 
 .custom-control-label {
   font-weight: 400;
+  text-align: right;
 }
+
 
 .forgot-password,
 .forgot-password a {
