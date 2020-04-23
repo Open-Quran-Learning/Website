@@ -2,28 +2,26 @@
   width: 70%;
   margin: auto;
   font-family: "Droid Arabic Kufi", "Droid Sans", sans-serif;
-  font-size: 14px;
 }
 .header {
   background-color: #2dcc70;
   height: auto;
   text-align: center;
-  padding: 10px;
-  margin: 20px 10px;
+  padding: 0.5em;
+  margin: 1% 1%;
 }
 .header h2 {
   color: White;
   margin: auto;
-  font-size: 40px;
   font-weight: bold;
-  padding: 10px 0;
+  padding: 0.5% 0%;
 }
 
 .course {
   background-color: #f2f2f2;
-  margin: 30px 0;
+  margin: 3em 0;
   width: 100%;
-  padding: 10px;
+  padding: 0.5em;
   text-align: center;
 }
 .course h2 {
@@ -31,45 +29,66 @@
   font-weight: bold;
   display: block;
   background-color: rgb(53, 53, 53);
-  padding: 10px;
+  padding: 0.5em;
 }
 .course hr {
   width: 80%;
-  border-width: 3px;
+  border-width: 0.3em;
   border-color: #2dcc70;
 }
 .course p {
   color: #8a8a8a;
-  padding: 20px;
+  padding: 2em;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.4em;
   text-align: right;
 }
 
 .course button {
-  margin-top: 20px;
+  margin-top: 2em;
   background-color: white;
-  margin-bottom: 5px;
-  font-size: 20px;
+  margin-bottom: 1em;
+  font-size: 1.5em;
   color: #2dcc70;
   font-weight: bold;
-  border: 1px solid #2dcc70;
-  padding: 10px 20px;
+  border: 0.1em solid #2dcc70;
+  padding: 0.5em 1.25em;
   cursor: pointer;
 }
 
 .course button:hover {
-  margin-top: 20px;
-  margin-bottom: 5px;
+  margin-top: 2em;
+  margin-bottom: 1em;
   background-color: #2dcc70;
-  font-size: 20px;
+  font-size: 1.5em;
   color: white;
   font-weight: bold;
-  border: 1px solid white;
-  padding: 10px 20px;
+  border: 0.1em solid white;
+  padding: 0.5em 1.25em;
   cursor: pointer;
 }
 
 .course button:focus {
   outline: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: auto;
+  }
+  .course h2 {
+    font-size: 1.5em;
+  }
+  .course p {
+    font-size: 1em;
+    padding: 0.5em;
+  }
+  .course button {
+    font-size: 1.5em;
+    padding: 0.5em;
+  }
+  .course button:hover {
+    font-size: 1.5em;
+    padding: 0.5em;
+  }
 }
