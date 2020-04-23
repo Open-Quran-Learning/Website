@@ -1,0 +1,27 @@
+.messageList {
+    float: right;
+    width: 20%;
+    border-radius: 0.5em;
+    margin-top: 1.2em;
+}
+
+.listHeader {
+    display: inline-block;
+    float: right;
+}
+
+.messageBox {
+    display: block;
+    text-align: center;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.submitButton {
+    
+    
+}
