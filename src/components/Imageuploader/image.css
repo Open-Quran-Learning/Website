@@ -1,0 +1,41 @@
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+
+.form {
+  right: 150px;
+  text-align: right;
+  margin-right: 5%;
+  margin-top: 1%;
+}
+
+.studentImage {
+    margin: 100%;
+  }
+
+  .form-control {
+    padding: .375rem 0;
+    border: none;
+  }
+  
+  .Preview {
+    max-width: 100px;
+    border-radius: 50%;
+    
+  }
+  
+  
+
+  .form-group {
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: row wrap;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+
+  .form-control{
+    width : 400px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
