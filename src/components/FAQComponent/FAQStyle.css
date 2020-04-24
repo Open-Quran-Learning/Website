@@ -1,0 +1,39 @@
+.faq_component {
+  text-align: right;
+}
+
+.faq_button {
+  text-align: right;
+  color: rgb(70, 66, 66);
+  display: block;
+  margin-right: 3%;
+  margin-left: 3%;
+  width: 94%;
+  background-color: #ffffff;
+  font-size: 1.2em;
+}
+
+.faq_answer {
+  margin-right: 3%;
+  margin-left: 3%;
+  font-size: 1em;
+}
+
+@media screen and (max-width: 600px) {
+  .faq_button {
+    text-align: right;
+    color: rgb(70, 66, 66);
+    display: block;
+    margin-right: 3%;
+    margin-left: 6%;
+    width: 94%;
+    background-color: #ffffff;
+    font-size: 0.8em;
+  }
+
+  .faq_answer {
+    margin-right: 3%;
+    margin-left: 3%;
+    font-size: 0.6em;
+  }
+}
