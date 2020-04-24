@@ -1,0 +1,70 @@
+.topic{
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+.messageList {
+    float: right;
+    width: 15%;
+    height: 2em;
+    border-radius: 1em;
+    margin-top: 1.2em;
+}
+
+
+#userMessage{
+    width: 50%;
+    height: 15em;       
+}
+
+.listHeader {
+    display: inline-block;
+    float: right;
+    color: #2f7026;
+}
+
+.emailForm{
+    display: block;
+    text-align: center;
+}
+
+.messageBox {
+    display: block;
+    text-align: center;
+    color: #6ba863;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.submitButton {
+}
+
+#userMail{
+    border-radius: 1em;
+}
+
+.enterMail{
+    color: #2f7026;
+}
+
+@media screen and (max-width: 800px){
+
+    .listHeader{
+        position: static;
+    }
+
+    .messageList{
+        width: 50%;
+        display: block;
+    }
+
+    #userMessage{
+        width: 75%;
+        height: 10em;        
+    }
+}
