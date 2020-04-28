@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ProgramPreview from "../ProgramPreview/ProgramPreview";
+import ImageUpload from "../Imageuploader/Imageuploader";
 import "./pageStyle.css";
 
 class StudentProfilePage extends Component {
@@ -7,7 +8,7 @@ class StudentProfilePage extends Component {
   render() {
     return (
       <div className="studentPage justify-content-end">
-        <img
+      <img
           className="studentImage"
           src="./assets/images/male.png"
           className="rounded-circle border border-success"
