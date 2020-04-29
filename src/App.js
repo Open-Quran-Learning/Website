@@ -7,6 +7,7 @@ import ProgramDetails from "./components/programdetails/ProgramDetails";
 import StudentProfilePage from "./components/StudentProfilePage/StudentProfilePage";
 import Login from "./components/Login/LoginComponent";
 import Registration from "./components/Login/RegistrationComponent";
+import AdminRegistration from "./components/AdminRegistration/AdminRegistration";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
             <Route path="/student" component={() => <StudentProfilePage />} />
             <Route path="/Login" component={() => <Login />} />
             <Route path="/Registration" component={() => <Registration />} />
+            <Route path="/Admin" component={() => <AdminRegistration />} />
 
             <Redirect to="/home" />
           </Switch>
