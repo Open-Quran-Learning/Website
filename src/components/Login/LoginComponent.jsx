@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import "./login.css"
+import axios from 'axios';
+
 
 export default class Login extends Component {
 
     constructor() {
         super();
-
+        
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            action:"login"
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -30,6 +33,28 @@ export default class Login extends Component {
 
         console.log('The form was submitted with the following data:');
         console.log(this.state);
+
+
+         
+
+            axios
+            .post('https://jsonplaceholder.typicode.com/users',this.state)
+            .then(res => {
+                console.log(`statusCode: ${res.statusCode}`)
+                console.log(res)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+            
+            // sent a GET request
+            axios.get('https://jsonplaceholder.typicode.com/users')
+            .then(response => {
+                console.log(response);
+            });
+
+
+
     }
 
 

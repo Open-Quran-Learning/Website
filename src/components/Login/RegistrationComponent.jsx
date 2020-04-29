@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./login.css"
-
+import axios from 'axios';
 
 
 export default class Registration extends Component {
@@ -19,8 +19,8 @@ export default class Registration extends Component {
             guardianemail: '',          
             guardianname: '',
             guardianphone: '',
-            age:'',
-            legal:''
+            type:"STUDENT",           
+            action:"register"
 
             
         };
@@ -48,7 +48,16 @@ export default class Registration extends Component {
         console.log('The form was submitted with the following data:');
         console.log(this.state);
 
-
+      
+            axios
+            .post('https://ayat-quran.herokuapp.com/v1/users',this.state)
+            .then(res => {
+                console.log(`statusCode: ${res.statusCode}`)
+                console.log(res)
+            })
+            .catch(error => {
+                console.error(error)
+            })
 
         //age calculation  
         let birthYear = Number(this.state.birthday.split('-')[0]);
