@@ -38,7 +38,7 @@ export default class Login extends Component {
          
 
             axios
-            .post('https://jsonplaceholder.typicode.com/users',this.state)
+            .post('https://ayat-quran.herokuapp.com/v1/users',this.state)
             .then(res => {
                 console.log(`statusCode: ${res.statusCode}`)
                 console.log(res)
@@ -48,7 +48,7 @@ export default class Login extends Component {
             })
             
             // sent a GET request
-            axios.get('https://jsonplaceholder.typicode.com/users')
+            axios.get('https://ayat-quran.herokuapp.com/v1/users')
             .then(response => {
                 console.log(response);
             });
