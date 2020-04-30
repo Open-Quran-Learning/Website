@@ -1,0 +1,84 @@
+.editContainer {
+  width: 80%;
+  text-align: center;
+  margin: 2em auto;
+}
+.editContainer h2 {
+  background-color: #2dcc70;
+  height: auto;
+  text-align: center;
+  padding: 0.5em;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.editContainer .editor {
+  background-color: #2dcc70;
+  height: auto;
+  padding: 0.5em;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  box-shadow: 0.1em 0.1em 0.7em rgb(151, 151, 151);
+}
+.editContainer .editor .formEdit label {
+  display: block;
+  text-align: right;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.editContainer .editor .formEdit input {
+  width: 70%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.editContainer .editor .formEdit input[type="submit"]:hover {
+  margin-top: 1em;
+  background-color: white;
+  margin-bottom: 0.5em;
+  font-size: 1.5em;
+  color: #2dcc70;
+  font-weight: bold;
+  border: 0.05em solid #2dcc70;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.editContainer .editor .formEdit input[type="submit"] {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  background-color: #2dcc70;
+  font-size: 1.5em;
+  color: white;
+  font-weight: bold;
+  border: 0.05em solid white;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.editContainer .editor .formEdit input[type="submit"]:focus {
+  outline: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .editContainer h2 {
+    font-size: 1.5em;
+  }
+  .editContainer .editor .formEdit label {
+    text-align: center;
+  }
+
+  .editContainer .editor .formEdit input[type="submit"] {
+    font-size: 1em;
+    padding: 0.5em;
+  }
+  .editContainer .editor .formEdit input[type="submit"]:hover {
+    font-size: 1em;
+    padding: 0.5em;
+  }
+}
