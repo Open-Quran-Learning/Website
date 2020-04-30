@@ -14,7 +14,9 @@ class EditProfile extends Component {
       country: "egypt",
       phone: "61111",
       birth_date: "date",
-      password: "464468",
+      currentpassword: "123456",
+      newpassword: "",
+      newpasswordconfirm: "",
     };
   }
 
@@ -24,12 +26,19 @@ class EditProfile extends Component {
       email: this.state.email,
       phone: this.state.phone,
       birth_date: this.state.birth_date,
-      password: this.state.password,
+      currentpassword: this.state.currentpassword,
+      newpassword: this.state.newpassword,
+      newpasswordconfirm: this.state.newpasswordconfirm,
     };
+
+    if (this.state.newpassword !== this.state.newpasswordconfirm) {
+      alert("Passwords don't match");
+    }
+
     axios
       .put("https://reqres.in/api/users/5", data)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => console.debug(res))
+      .catch((err) => console.debug(err));
   };
 
   //start Change Handler
@@ -43,11 +52,22 @@ class EditProfile extends Component {
       phone: event.target.value,
     });
   };
-  passwordChangeHandler = (event) => {
+  oldpasswordChangeHandler = (event) => {
     this.setState({
-      password: event.target.value,
+      oldpassword: event.target.value,
     });
   };
+  newpasswordChangeHandler = (event) => {
+    this.setState({
+      newpassword: event.target.value,
+    });
+  };
+  new2passwordChangeHandler = (event) => {
+    this.setState({
+      newpasswordconfirm: event.target.value,
+    });
+  };
+
   birth_dateChangeHandler = (event) => {
     this.setState({
       birth_date: event.target.value,
@@ -67,28 +87,38 @@ class EditProfile extends Component {
               onChange={this.emailChangeHandler}
             />
             <label>رقم الهاتف</label>
-
             <input
               type="tel"
               onChange={this.phoneChangeHandler}
               placeholder={this.state.phone}
             />
-            <label>كلمة السر</label>
-
+            <label>كلمة السر القديمة</label>
             <input
               type="password"
-              onChange={this.passwordChangeHandler}
+              onChange={this.oldpasswordChangeHandler}
+              required
+            />
+            <label>كلمة السر الجديدة</label>
+            <input
+              type="password"
+              onChange={this.newpasswordChangeHandler}
+              required
+            />
+            <label>تأكيد كلمة السر الجديدة</label>
+            <input
+              type="password"
+              onChange={this.new2passwordChangeHandler}
               required
             />
             <label>تاريخ الميلاد</label>
-
             <input
               type="date"
               onChange={this.birth_dateChangeHandler}
               placeholder={this.state.password}
+              required
             />
             <input type="submit" value="تأكيد البيانات" />
-            <input type="submit" value="الرجوع" />
+            <input type="button" value="الرجوع" />
           </form>
         </div>
       </div>

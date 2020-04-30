@@ -1,5 +1,5 @@
 .editContainer {
-  width: 80%;
+  width: 60%;
   text-align: center;
   margin: 2em auto;
 }
@@ -37,7 +37,8 @@
   box-sizing: border-box;
 }
 
-.editContainer .editor .formEdit input[type="submit"]:hover {
+.editContainer .editor .formEdit input[type="submit"],
+[type="button"]:hover {
   margin-top: 1em;
   background-color: white;
   margin-bottom: 0.5em;
@@ -49,7 +50,8 @@
   display: inline-block;
 }
 
-.editContainer .editor .formEdit input[type="submit"] {
+.editContainer .editor .formEdit input[type="submit"],
+input[type="button"] {
   margin-top: 1em;
   margin-bottom: 0.5em;
   background-color: #2dcc70;
@@ -61,7 +63,8 @@
   display: inline-block;
 }
 
-.editContainer .editor .formEdit input[type="submit"]:focus {
+.editContainer .editor .formEdit input[type="submit"],
+input[type="button"] :focus {
   outline: 0;
 }
 
@@ -73,11 +76,13 @@
     text-align: center;
   }
 
-  .editContainer .editor .formEdit input[type="submit"] {
+  .editContainer .editor .formEdit input[type="submit"],
+  input[type="button"] {
     font-size: 1em;
     padding: 0.5em;
   }
-  .editContainer .editor .formEdit input[type="submit"]:hover {
+  .editContainer .editor .formEdit input[type="submit"],
+  input[type="button"] :hover {
     font-size: 1em;
     padding: 0.5em;
   }
