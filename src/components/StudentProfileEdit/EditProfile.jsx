@@ -75,11 +75,7 @@ class EditProfile extends Component {
             />
             <label>كلمة السر</label>
 
-            <input
-              type="password"
-              onChange={this.passwordChangeHandler}
-              placeholder={this.state.password}
-            />
+            <input type="password" onChange={this.passwordChangeHandler} />
             <label>تاريخ الميلاد</label>
 
             <input
