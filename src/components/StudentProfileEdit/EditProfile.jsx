@@ -10,11 +10,10 @@ class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "sadsadsa",
-      country: "egypt",
-      phone: "61111",
-      birth_date: "date",
-      currentpassword: "123456",
+      email: this.props.email,
+      phone: this.props.phone,
+      birth_date: this.props.birth_date,
+      currentpassword: "",
       newpassword: "",
       newpasswordconfirm: "",
     };
