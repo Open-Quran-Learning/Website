@@ -31,6 +31,7 @@ const Quiz = ({ questions, evaluate }) => {
                 questionTitle={q.questionTitle}
                 fullMark={q.fullMark}
                 answers={q.answers}
+                inReview={isSubmitted}
                 onAnswered={(q_id, grade) => {
                   setAnsweredQuestions(
                     answeredQuestions.map((q) => {
@@ -46,34 +47,51 @@ const Quiz = ({ questions, evaluate }) => {
               <WrittenQuestion
                 questionTitle={q.questionTitle}
                 isOptional={q.isOptional}
+                inReview={isSubmitted}
                 key={q.order}
               />
             )}
           </>
         ))}
-      <button type="button" className="btn btn-success" disabled={!canSubmit}>
+      <button
+        type="button"
+        className="btn btn-success"
+        disabled={!canSubmit}
+        onClick={() => setIsSubmetted(true)}
+      >
         سلّم الإجابات
       </button>
     </div>
   );
 };
 
-const MCQQuestion = ({ questionTitle, answers, q_id, onAnswered }) => {
-  const [grade, setGrade] = useState(0);
-
+const MCQQuestion = ({
+  questionTitle,
+  answers,
+  inReview,
+  q_id,
+  onAnswered,
+}) => {
+  const [grade, setGrade] = useState(-1);
+  // TODO: display score
   useSkippingEffect(() => {
     onAnswered(q_id, grade);
   }, [grade]);
   return (
     <div className="mcqQuestion">
       <div className="questionText">{questionTitle}</div>
-      <MCQAnswers onAnswered={setGrade} answers={answers} q_id={q_id} />
+      <MCQAnswers
+        inReview={inReview}
+        onAnswered={setGrade}
+        answers={answers}
+        q_id={q_id}
+      />
       <div className="separator"></div>
     </div>
   );
 };
 
-const MCQAnswers = ({ onAnswered, answers, q_id }) => {
+const MCQAnswers = ({ onAnswered, answers, inReview, q_id }) => {
   const isSingleCorrect = answers.filter((a) => a.isCorrect).length === 1;
   const [selectedAnswers, setSelectedAnswers] = useState(
     answers.map((a, i) => {
@@ -99,6 +117,8 @@ const MCQAnswers = ({ onAnswered, answers, q_id }) => {
             <RadioAnswer
               q_id={q_id}
               text={answer.answerText}
+              inReview={inReview}
+              isCorrect={answer.isCorrect}
               onSelect={() =>
                 setSelectedAnswers(
                   selectedAnswers.map(
@@ -113,6 +133,8 @@ const MCQAnswers = ({ onAnswered, answers, q_id }) => {
           ) : (
             <CheckedAnswer
               text={answer.answerText}
+              inReview={inReview}
+              isCorrect={answer.isCorrect}
               onSelect={() =>
                 setSelectedAnswers(
                   selectedAnswers.map(
@@ -129,34 +151,43 @@ const MCQAnswers = ({ onAnswered, answers, q_id }) => {
   );
 };
 
-const RadioAnswer = ({ text, onSelect, q_id }) => (
-  <div className="radio answer">
+const RadioAnswer = ({ text, onSelect, inReview, isCorrect, q_id }) => (
+  <div
+    className={`radio answer ${
+      inReview ? (isCorrect ? "correctAnswer" : "wrongAnswer") : ""
+    }`}
+  >
     <label>
-      <input type="radio" name={`optradio${q_id}`} onChange={onSelect} />
+      <input
+        type="radio"
+        name={`optradio${q_id}`}
+        onChange={onSelect}
+        disabled={inReview}
+      />
       {text}
     </label>
   </div>
 );
 
-const CheckedAnswer = ({ text, onSelect }) => (
-  <div className="checkbox answer">
+const CheckedAnswer = ({ text, inReview, onSelect, isCorrect }) => (
+  <div
+    className={`checkbox answer ${
+      inReview ? (isCorrect ? "correctAnswer" : "wrongAnswer") : ""
+    }`}
+  >
+    {console.log(inReview)}
     <label>
-      <input type="checkbox" value="" onChange={onSelect} />
+      <input type="checkbox" value="" onChange={onSelect} disabled={inReview} />
       {text}
     </label>
   </div>
 );
 
-const WrittenQuestion = ({ questionTitle, isOptional, q_id }) => {
+const WrittenQuestion = ({ questionTitle, isOptional, inReview, q_id }) => {
   return (
     <div className="writtenQuestion">
       <div className="questionText">{questionTitle}</div>
-      <textarea
-        required={!isOptional}
-        class="form-control"
-        rows="5"
-        id="comment"
-      ></textarea>
+      <textarea class="form-control" rows="5" disabled={inReview}></textarea>
       <div className="separator"></div>
     </div>
   );

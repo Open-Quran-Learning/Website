@@ -39,6 +39,10 @@
   margin: 4px;
 }
 
+.correctAnswer{
+  background-color: rgba(35, 180, 139, 0.26);
+}
+
 .separator{
     height: 1px;
     background-color: rgba(165, 42, 42, 0.2);
