@@ -15,7 +15,7 @@ const Quiz = ({ questions, evaluate }) => {
       };
     })
   );
-  const canSubmit = answeredQuestions.every((q) =>
+  const canSubmit = !isSubmitted && answeredQuestions.every((q) =>
     q.isOptional ? true : q.isAnswered
   );
 
