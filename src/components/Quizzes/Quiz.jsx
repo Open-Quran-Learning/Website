@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import "./Quiz.css";
 import { useSkippingEffect } from "./utils";
 
-const Quiz = ({ questions, evaluate }) => {
+const Quiz = ({ questions, assess }) => {
   const [isSubmitted, setIsSubmetted] = useState(false);
   const [answeredQuestions, setAnsweredQuestions] = useState(
     questions.map((q) => {
@@ -18,6 +18,13 @@ const Quiz = ({ questions, evaluate }) => {
   const canSubmit = !isSubmitted && answeredQuestions.every((q) =>
     q.isOptional ? true : q.isAnswered
   );
+
+  const total = answeredQuestions
+    .map((q) => q.grade)
+    .reduce((acc, q) => acc + q);
+  const fullMark = answeredQuestions
+    .map((q) => q.fullMark)
+    .reduce((acc, m) => acc + m);
 
   return (
     <div className="mcqQuiz">
@@ -57,7 +64,10 @@ const Quiz = ({ questions, evaluate }) => {
         type="button"
         className="btn btn-success"
         disabled={!canSubmit}
-        onClick={() => setIsSubmetted(true)}
+        onClick={() => {
+          setIsSubmetted(true);
+          assess(total, fullMark, total/fullMark * 100);
+        }}
       >
         سلّم الإجابات
       </button>
@@ -175,7 +185,6 @@ const CheckedAnswer = ({ text, inReview, onSelect, isCorrect }) => (
       inReview ? (isCorrect ? "correctAnswer" : "wrongAnswer") : ""
     }`}
   >
-    {console.log(inReview)}
     <label>
       <input type="checkbox" value="" onChange={onSelect} disabled={inReview} />
       {text}
