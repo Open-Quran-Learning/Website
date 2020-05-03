@@ -1,0 +1,93 @@
+.manageLessons {
+  display: flex;
+  text-align: right;
+  padding: 1%;
+  align-items: center;
+  flex-direction: column;
+}
+
+.lessonContent {
+  flex: 0 1 auto;
+  display: flex;
+  align-items: center;
+  padding: 1%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-radius: 4px;
+  border-color: #d7d2d2;
+  width: 80vw;
+  height: 40vh;
+  margin-bottom: 2%;
+  border-style: dashed;
+  border-width: thin;
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    flex-direction: column;
+    height: 90vh;
+    width: 90vw;
+    overflow: scroll;
+    justify-content: space-between;
+  }
+
+  .videoPreview {
+    flex: 0 1 auto;
+    display: flex;
+    max-height: 90%;
+    flex-direction: column;
+    margin-bottom: 1%;
+
+    .ytVideoInput {
+      flex: 1 1 auto;
+      margin-bottom: 1%;
+    }
+    img {
+      flex: 0 1 auto;
+      width: 16em;
+      height: 9em;
+    }
+  }
+  .articleInput {
+    max-height: 100%;
+    overflow-y: scroll;
+    flex: 0 1 auto;
+    textarea {
+    }
+  }
+  .manageReferences {
+    flex: 0 1 auto;
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    max-height: 24em;
+    width: 20em;
+    max-height: 90%;
+    border-radius: 4px;
+    border-color: #d7d2d2;
+    border-style: dashed;
+    border-width: thin;
+    padding: 2%;
+    .referencesInputs {
+      flex: 0 1 auto;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2%;
+    }
+    @media only screen and (max-width: 768px) {
+      /* For mobile phones: */
+      width: 16em;
+    }
+  }
+}
+
+.plusMinusBtns {
+  display: flex;
+  flex: 1 1 auto;
+  width: 10vw;
+  justify-content: space-evenly;
+  button {
+    flex: 0 1 auto;
+    width: 3em;
+  }
+}
