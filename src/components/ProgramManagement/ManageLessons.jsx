@@ -101,6 +101,9 @@ const ManageLessonEdit = ({ videoUrl, article, references, index, update }) => {
           id={articleInputId}
           class="form-control"
           rows="8"
+          onInput={(e) => {
+            updateContent({ ...content, article: e.target.value });
+          }}
         ></textarea>
       </div>
       <ManageReferences
