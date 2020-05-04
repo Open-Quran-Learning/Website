@@ -27,6 +27,8 @@ const ManageLessons = () => {
       {lessons.map((lesson, i) => (
         <div key={i}>
           <ManageLessonEdit
+            title={lesson.title}
+            description={lesson.description}
             videoUrl={lesson.videoUrl}
             article={lesson.article}
             references={lesson.references}
@@ -67,51 +69,85 @@ const ManageLessons = () => {
   );
 };
 
-const ManageLessonEdit = ({ videoUrl, article, references, index, update }) => {
+const ManageLessonEdit = ({
+  title,
+  description,
+  videoUrl,
+  article,
+  references,
+  index,
+  update,
+}) => {
   const [content, updateContent] = useState({
+    title: title,
+    description: description,
     videoUrl: videoUrl,
     article: article,
     references: references,
   });
 
-  const videoInputId = `yt_input_${index}`;
-  const articleInputId = `article_input_${index}`;
+  // const videoInputId = `yt_input_${index}`;
+  // const articleInputId = `article_input_${index}`;
 
   return (
-    <div className="lessonContent">
-      <div className="videoPreview">
+    <div className="lesson">
+      <div className="lessonMetadata">
         <input
-          id={videoInputId}
-          className="ytVideoInput form-control"
+          className="lessonTitle form-control"
           type="text"
-          placeholder={"رابط الڤيديو"}
-          value={content.videoUrl}
+          placeholder={"اسم الدرس"}
+          value={content.title}
           onInput={(e) => {
-            const url = e.target.value;
-            updateContent({ ...content, videoUrl: url });
+            updateContent({ ...content, title: e.target.value });
             update(content);
           }}
         />
-        <img src={YouTubeThmbnailURL(content.videoUrl)} />
-      </div>
-      <div className="articleInput">
-        <textarea
-          value={content.article}
-          placeholder={"اكتب مقال"}
-          id={articleInputId}
-          class="form-control"
-          rows="8"
+        <input
+          className="lessonDescription form-control"
+          type="text"
+          placeholder={"نُبذة قصيرة عن الدرس"}
+          value={content.description}
           onInput={(e) => {
-            updateContent({ ...content, article: e.target.value });
+            updateContent({ ...content, description: e.target.value });
+            update(content);
           }}
-        ></textarea>
+        />
       </div>
-      <ManageReferences
-        initialReferences={references}
-        update={(references) =>
-          updateContent({ ...content, references: references })
-        }
-      />
+      <div className="lessonContent">
+        <div className="videoPreview">
+          <input
+            // id={videoInputId}
+            className="ytVideoInput form-control"
+            type="text"
+            placeholder={"رابط الڤيديو"}
+            value={content.videoUrl}
+            onInput={(e) => {
+              const url = e.target.value;
+              updateContent({ ...content, videoUrl: url });
+              update(content);
+            }}
+          />
+          <img src={YouTubeThmbnailURL(content.videoUrl)} />
+        </div>
+        <div className="articleInput">
+          <textarea
+            value={content.article}
+            placeholder={"اكتب مقال"}
+            // id={articleInputId}
+            class="form-control"
+            rows="10"
+            onInput={(e) => {
+              updateContent({ ...content, article: e.target.value });
+            }}
+          ></textarea>
+        </div>
+        <ManageReferences
+          initialReferences={references}
+          update={(references) =>
+            updateContent({ ...content, references: references })
+          }
+        />
+      </div>
     </div>
   );
 };
