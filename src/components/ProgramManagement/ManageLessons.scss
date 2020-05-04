@@ -6,20 +6,48 @@
   flex-direction: column;
 }
 
+.lesson {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 4px;
+  border-color: #d7d2d2;
+  width: 60em;
+  height: 26em;
+  margin-bottom: 2%;
+  border-style: dashed;
+  border-width: thin;
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 22em;
+    height: 64em;
+  }
+}
+
+.lessonMetadata {
+  align-self: center;
+  height: 4em;
+  width: 26em;
+  input {
+    margin-bottom: 0.4em;
+  }
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    width: 18em;
+  }
+}
+
 .lessonContent {
-  flex: 0 1 auto;
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: space-evenly;
   justify-items: center;
-  border-radius: 4px;
-  border-color: #d7d2d2;
   width: 58em;
   height: 18em;
-  margin-bottom: 2%;
-  border-style: dashed;
-  border-width: thin;
   @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     flex-direction: column;
