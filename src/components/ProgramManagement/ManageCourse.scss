@@ -1,19 +1,16 @@
 .ManageCourse {
   text-align: right;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
   padding: 0.4em;
+  margin: auto;
 }
 
 .courseMetadata {
-  width: 34em;
+  width: 70%;
+  margin: auto;
   .courseTitle {
     margin-bottom: 0.2em;
   }
 }
 .lessonsLabel , .submitCourse {
-    align-self: start;
     margin: 1em;
 }

@@ -1,100 +1,77 @@
-.manageLessons {
-  display: flex;
+manageLessons {
   text-align: right;
   padding: 1%;
-  align-items: center;
-  flex-direction: column;
 }
 
 .lesson {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  border: thin dashed #d7d2d2;
   border-radius: 4px;
-  border-color: #d7d2d2;
-  width: 60em;
-  height: 26em;
   margin-bottom: 2%;
-  border-style: dashed;
-  border-width: thin;
+  padding: 1em;
   @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 22em;
-    height: 64em;
   }
 }
 
 .lessonMetadata {
-  align-self: center;
-  height: 4em;
-  width: 26em;
+  width: 60%;
+  margin: auto;
+  margin-bottom: 2%;
   input {
-    margin-bottom: 0.4em;
+    margin-bottom: 0.2em;
   }
   @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    width: 18em;
   }
 }
 
 .lessonContent {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-evenly;
-  justify-items: center;
-  width: 58em;
-  height: 18em;
   @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 20em;
-    height: 58em;
   }
 
   .videoPreview {
-    overflow-y: hidden;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 2em;
     .ytVideoInput {
-      display: block;
+      height: 5%;
       margin-bottom: 1%;
     }
     img {
-      display: block;
-      height: 13.4em;
+      height: auto;
+      width: 100%;
+    }
+    @media only screen and (max-width: 768px) {
+      /* For mobile phones: */
     }
   }
   .articleInput {
-    overflow-y: scroll;
     max-height: 16em;
-    width: 16em;
-    align-self: center;
-    textarea {
+    overflow-y: scroll;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 2em;
+    @media only screen and (max-width: 768px) {
+      /* For mobile phones: */
     }
   }
+
   .manageReferences {
-    display: flex;
-    overflow-y: scroll;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    width: 20em;
-    height: 16em;
+    width: 70%;
     max-height: 16em;
+    overflow-y: scroll;
+    border: thin dashed #d7d2d2;
     border-radius: 4px;
-    border-color: #d7d2d2;
-    border-style: dashed;
-    border-width: thin;
+    margin: auto;
+    padding: 1em;
     .referencesInputs {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 0.8em;
+      margin: auto;
+      margin-bottom: 1em;
       input {
-        margin-bottom: 0.2em;
+        display: inline;
+        margin-left: 1em;
+        width: 40%;
       }
     }
     @media only screen and (max-width: 768px) {
@@ -104,8 +81,9 @@
 }
 
 .plusMinusBtns {
-  display: flex;
-  width: 6em;
-  height: 2em;
-  justify-content: space-evenly;
+  text-align: center;
+  margin: auto;
+  button {
+    margin-right: 0.6em;
+  }
 }
