@@ -7,17 +7,20 @@ export default class AdminRegistration extends Component {
     super();
 
     this.state = {
+      guardian_email: "",
+      guardian_name: "",
+      guardian_phone: "",
       email: "",
       password: "",
       full_name: "",
       phone: "",
       birth_date: "",
-      gender: "",
+      gender: true,
       type: "staff",
       action: "register_staff",
       profile_pic: "default",
       country: "not null",
-      registeration_date: "0000-00-00"
+      registeration_date: "2010-01-01"
     };
 
     this.handleChange = this.handleChange.bind(this);
