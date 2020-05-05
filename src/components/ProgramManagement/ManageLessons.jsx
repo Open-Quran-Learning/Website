@@ -4,8 +4,8 @@ import { YouTubeThmbnailURL } from "./utils";
 import { useEffect } from "react";
 
 // TODO: fetch existing lessons in this course for intial state.
-const ManageLessons = () => {
-  const [lessons, updateLessons] = useState([]);
+const ManageLessons = ({ existingLessons, update }) => {
+  const [lessons, updateLessons] = useState(existingLessons);
 
   const updateOneLesson = (lesson, index) => {
     console.log(lesson);
@@ -21,6 +21,8 @@ const ManageLessons = () => {
     console.log(current);
     updateLessons(current);
   };
+
+  useEffect(() => update(lessons), [lessons]);
 
   return (
     <div className="manageLessons">
