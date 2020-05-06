@@ -2,6 +2,7 @@ import React, { useState, Fragment as div } from "react";
 import "./ManageLessons.scss";
 import { YouTubeThmbnailURL } from "./utils";
 import { useEffect } from "react";
+import PlusMinusButtons from "../Shared/PlusMinusButtons";
 
 // TODO: fetch existing lessons in this course for intial state.
 const ManageLessons = ({ existingLessons, update }) => {
@@ -42,31 +43,19 @@ const ManageLessons = ({ existingLessons, update }) => {
           {/* <div className="separator"></div> */}
         </div>
       ))}
-      <div className="plusMinusBtns">
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={() => {
-            addLesson({
-              videoUrl: "",
-              article: "",
-              references: [],
-            });
-          }}
-        >
-          +
-        </button>
-
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={() => {
-            removeLesson(lessons.length - 1);
-          }}
-        >
-          -
-        </button>
-      </div>
+      <PlusMinusButtons
+        onPlus={() => {
+          addLesson({
+            videoUrl: "",
+            article: "",
+            references: [],
+          });
+        }}
+        onMinus={() => {
+          removeLesson(lessons.length - 1);
+        }}
+        minusDisabled={lessons.length == 0}
+      />
     </div>
   );
 };
@@ -203,30 +192,18 @@ const ManageReferences = ({ initialReferences, update }) => {
           />
         </div>
       ))}
-      <div className="plusMinusBtns">
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={() => {
-            addReference({
-              title: "",
-              url: "",
-            });
-          }}
-        >
-          +
-        </button>
-
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={() => {
-            removeReference(references.length - 1);
-          }}
-        >
-          -
-        </button>
-      </div>
+      <PlusMinusButtons
+        onPlus={() => {
+          addReference({
+            title: "",
+            url: "",
+          });
+        }}
+        onMinus={() => {
+          removeReference(references.length - 1);
+        }}
+        minusDisabled={references.length == 0}
+      />
     </div>
   );
 };
