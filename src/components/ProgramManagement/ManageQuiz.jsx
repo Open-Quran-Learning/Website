@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import PlusMinusButtons from "../Shared/PlusMinusButtons";
+import ManageCollectionState from "./ManageCollectionState";
 import "./ManageQuiz.scss";
 
 //TODO fetch quiz data via api
@@ -7,24 +8,12 @@ const ManageQuiz = ({ isNewQuiz, existingQuestions, update }) => {
   const [questions, updateQuestions] = useState(
     isNewQuiz ? [] : existingQuestions
   );
-
-  const updateOneQuestion = (question, index) => {
-    const current = [...questions];
-    current[index] = { ...current[index], ...question };
-    updateQuestions(current);
-  };
-
-  const addQuestion = (question) => updateQuestions([...questions, question]);
-  const removeQuestion = (index) => {
-    const current = [...questions];
-    current.splice(index, 1);
-    updateQuestions(current);
-  };
+  const manageState = new ManageCollectionState([questions, updateQuestions]);
 
   useEffect(() => {
     update(questions);
   }, [questions]);
-
+  console.log(questions);
   return (
     <div className="manageQuiz">
       <label>الأسئلة</label>
@@ -34,14 +23,14 @@ const ManageQuiz = ({ isNewQuiz, existingQuestions, update }) => {
             <ManageQuestion
               key={i}
               question={q}
-              updateQuestion={(question) => updateOneQuestion(question, i)}
+              updateQuestion={(question) => manageState.updateOne(question, i)}
             />
           );
         })}
       </ul>
       <PlusMinusButtons
         onPlus={() => {
-          addQuestion({
+          manageState.addOne({
             questionTitle: "",
             order: questions.length - 1,
             type: "WRITTEN",
@@ -49,7 +38,7 @@ const ManageQuiz = ({ isNewQuiz, existingQuestions, update }) => {
           });
         }}
         onMinus={() => {
-          removeQuestion(questions.length - 1);
+          manageState.removeLast();
         }}
         minusDisabled={questions.length == 0}
       />
@@ -101,21 +90,9 @@ const ManageQuestion = ({ question, updateQuestion }) => {
 
 const ManageMCQAnswers = ({ existingAnswers, update }) => {
   const [answers, updateAnswers] = useState(existingAnswers || []);
+  const manageAnswers = new ManageCollectionState([answers, updateAnswers]);
 
-  const updateOneAnswer = (answer, index) => {
-    const current = [...answers];
-    current[index] = { ...current[index], ...answer };
-    updateAnswers(current);
-  };
-
-  const addAnswer = (answer) => updateAnswers([...answers, answer]);
-  const removeAnswer = (index) => {
-    const current = [...answers];
-    current.splice(index, 1);
-    updateAnswers(current);
-  };
-
-  useEffect(() => update(answers), [answers]);
+  useEffect(() => update(manageAnswers.collection), [manageAnswers.collection]);
 
   return (
     <>
@@ -129,7 +106,7 @@ const ManageMCQAnswers = ({ existingAnswers, update }) => {
                 placeholder={"اجابة"}
                 value={a.answerText}
                 onInput={(e) => {
-                  updateOneAnswer(
+                  manageAnswers.updateOne(
                     { ...answers[i], answerText: e.target.value },
                     i
                   );
@@ -140,7 +117,7 @@ const ManageMCQAnswers = ({ existingAnswers, update }) => {
                   type="checkbox"
                   value={a.isCorrect}
                   onChange={(e) =>
-                    updateOneAnswer(
+                    manageAnswers.updateOne(
                       {
                         ...answers[i],
                         isCorrect: e.target.checked,
@@ -157,13 +134,13 @@ const ManageMCQAnswers = ({ existingAnswers, update }) => {
       </ul>
       <PlusMinusButtons
         onPlus={() => {
-          addAnswer({
+          manageAnswers.addOne({
             answerText: "",
             isCorrect: false,
           });
         }}
         onMinus={() => {
-          removeAnswer(answers.length - 1);
+          manageAnswers.removeLast();
         }}
         minusDisabled={answers.length == 0}
       />
