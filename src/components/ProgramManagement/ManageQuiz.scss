@@ -1,0 +1,39 @@
+.manageQuiz {
+  text-align: right;
+  padding: 1em;
+  margin: auto;
+}
+
+.manageQuestion {
+  list-style-position: inside;
+  margin-bottom: 2em;
+  border: thin dashed #d7d2d2;
+  border-radius: 4px;
+  padding: 0.6em;
+  ul {
+    margin: 0.8em;
+  }
+}
+
+.mcqLabel,
+.correctAnswerLabel {
+  font-size: medium;
+  white-space: nowrap;
+  vertical-align: middle;
+  input {
+    vertical-align: middle;
+    margin: 0.2em;
+  }
+}
+
+.mcqLabel {
+  margin-bottom: 2em;
+}
+
+ul,
+li {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+}
