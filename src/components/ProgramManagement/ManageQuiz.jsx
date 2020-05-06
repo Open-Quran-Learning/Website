@@ -8,12 +8,12 @@ const ManageQuiz = ({ isNewQuiz, existingQuestions, update }) => {
   const [questions, updateQuestions] = useState(
     isNewQuiz ? [] : existingQuestions
   );
-  const manageState = new ManageCollectionState([questions, updateQuestions]);
+  const manageQuizzes = new ManageCollectionState([questions, updateQuestions]);
 
   useEffect(() => {
     update(questions);
   }, [questions]);
-  console.log(questions);
+
   return (
     <div className="manageQuiz">
       <label>الأسئلة</label>
@@ -23,14 +23,16 @@ const ManageQuiz = ({ isNewQuiz, existingQuestions, update }) => {
             <ManageQuestion
               key={i}
               question={q}
-              updateQuestion={(question) => manageState.updateOne(question, i)}
+              updateQuestion={(question) =>
+                manageQuizzes.updateOne(question, i)
+              }
             />
           );
         })}
       </ul>
       <PlusMinusButtons
         onPlus={() => {
-          manageState.addOne({
+          manageQuizzes.addOne({
             questionTitle: "",
             order: questions.length - 1,
             type: "WRITTEN",
@@ -38,7 +40,7 @@ const ManageQuiz = ({ isNewQuiz, existingQuestions, update }) => {
           });
         }}
         onMinus={() => {
-          manageState.removeLast();
+          manageQuizzes.removeLast();
         }}
         minusDisabled={questions.length == 0}
       />
