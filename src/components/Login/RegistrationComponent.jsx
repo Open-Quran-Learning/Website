@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./login.css";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
+import { Alert } from "reactstrap";
 
 export default class Registration extends Component {
   constructor() {
@@ -19,16 +21,18 @@ export default class Registration extends Component {
         birth_date: "",
         gender: true,
         type: "student",
-        action: "register_staff",
+        action: "register_student",
         profile_pic: "default",
         country: "not null",
         registeration_date: "2010-01-01"
       },
-      guardian_req: false
+      guardian_req: false,
+      api_state: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAPI = this.handleAPI.bind(this);
   }
 
   handleChange(e) {
@@ -80,6 +84,10 @@ export default class Registration extends Component {
       .then(res => {
         console.log(`statusCode: ${res.statusCode}`);
         console.log(res);
+
+        this.setState({
+          api_state: res.data.status
+        });
       })
       .catch(error => {
         console.error(error);
@@ -98,6 +106,31 @@ export default class Registration extends Component {
     return legal;
   }
 
+  handleAPI() {
+    if (this.state.api_state === "created")
+      return (
+        <div>
+          <Alert color="success">تم انشاء الحساب بنجاح</Alert>
+          <Redirect to="/login" />
+        </div>
+      );
+    else if (this.state.api_state === "Email already exists")
+      return (
+        <div>
+          <Alert color="danger">البريد الالكترونى موجود بالفعل</Alert>{" "}
+        </div>
+      );
+    else if (this.state.api_state === "Phone already exists")
+      return (
+        <div>
+          <Alert color="danger">
+            رقم الهاتف تم استخدامة بالفعل فى حساب اخر
+          </Alert>
+        </div>
+      );
+    return "";
+  }
+
   render() {
     return (
       <div className="Con">
@@ -114,7 +147,7 @@ export default class Registration extends Component {
                   className="form-control"
                   placeholder="اسم المستخدم"
                   name="full_name"
-                  value={this.state.jobject.name}
+                  value={this.state.jobject.full_name}
                   onChange={this.handleChange}
                   required
                 />
@@ -183,7 +216,7 @@ export default class Registration extends Component {
                   className="form-control"
                   placeholder="ادخل اسم ولى أمرك"
                   name="guardian_name"
-                  value={this.state.jobject.guardianname}
+                  value={this.state.jobject.guardian_name}
                   onChange={this.handleChange}
                   disabled={!this.state.guardian_req}
                   required
@@ -198,7 +231,7 @@ export default class Registration extends Component {
                   className="form-control"
                   placeholder="ادخل البريد الالكترونى الخاص بولى الأمر"
                   name="guardian_email"
-                  value={this.state.jobject.guardianemail}
+                  value={this.state.jobject.guardian_email}
                   onChange={this.handleChange}
                   disabled={!this.state.guardian_req}
                   required
@@ -213,7 +246,7 @@ export default class Registration extends Component {
                   className="form-control"
                   placeholder="ادخل رقم الهاتف الخاص بولى الأمر"
                   name="guardian_phone"
-                  value={this.state.jobject.guardianphone}
+                  value={this.state.jobject.guardian_phone}
                   onChange={this.handleChange}
                   disabled={!this.state.guardian_req}
                   required
@@ -531,6 +564,7 @@ export default class Registration extends Component {
                 التسجيل
               </button>
             </form>
+            <this.handleAPI />
           </div>
         </div>
       </div>

@@ -1,30 +1,37 @@
 import React, { Component } from "react";
 import "./login.css";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
+import { Alert } from "reactstrap";
 
 export default class AdminRegistration extends Component {
   constructor() {
     super();
-
     this.state = {
-      guardian_email: "",
-      guardian_name: "",
-      guardian_phone: "",
-      email: "",
-      password: "",
-      full_name: "",
-      phone: "",
-      birth_date: "",
-      gender: true,
-      type: "staff",
-      action: "register_staff",
-      profile_pic: "default",
-      country: "not null",
-      registeration_date: "2010-01-01"
+      jobject: {
+        guardian_email: "",
+        guardian_name: "",
+        guardian_phone: "",
+
+        email: "",
+        password: "",
+        full_name: "",
+        phone: "",
+        birth_date: "",
+        gender: true,
+        type: "staff",
+        action: "register_staff",
+        profile_pic: "default",
+        country: "not null",
+        registeration_date: "2010-01-01"
+      },
+
+      api_state: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAPI = this.handleAPI.bind(this);
   }
 
   handleChange(e) {
@@ -32,17 +39,22 @@ export default class AdminRegistration extends Component {
     let value = target.type === "checkbox" ? target.checked : target.value;
     let name = target.name;
 
+    var obj = this.state.jobject;
+
     if (value === "Male") {
+      obj[name] = true;
       this.setState({
-        [name]: true
+        jobject: obj
       });
     } else if (value === "Female") {
+      obj[name] = false;
       this.setState({
-        [name]: false
+        jobject: obj
       });
     } else {
+      obj[name] = value;
       this.setState({
-        [name]: value
+        jobject: obj
       });
     }
   }
@@ -51,19 +63,47 @@ export default class AdminRegistration extends Component {
     e.preventDefault();
 
     console.log("The form was submitted with the following data:");
-    console.log(this.state);
+    console.log(this.state.jobject);
 
     axios
-      .post("https://ayat-quran.herokuapp.com/v1/users", this.state)
+      .post("https://ayat-quran.herokuapp.com/v1/users", this.state.jobject)
       .then(res => {
         console.log(`statusCode: ${res.statusCode}`);
         console.log(res);
+
+        this.setState({
+          api_state: res.data.status
+        });
       })
       .catch(error => {
         console.error(error);
       });
   }
 
+  handleAPI() {
+    if (this.state.api_state === "created")
+      return (
+        <div>
+          <Alert color="success">تم انشاء الحساب بنجاح</Alert>
+          <Redirect to="/login" />
+        </div>
+      );
+    else if (this.state.api_state === "Email already exists")
+      return (
+        <div>
+          <Alert color="danger">البريد الالكترونى موجود بالفعل</Alert>{" "}
+        </div>
+      );
+    else if (this.state.api_state === "Phone already exists")
+      return (
+        <div>
+          <Alert color="danger">
+            رقم الهاتف تم استخدامة بالفعل فى حساب اخر
+          </Alert>
+        </div>
+      );
+    return "";
+  }
   render() {
     return (
       <div className="Con">
@@ -80,7 +120,7 @@ export default class AdminRegistration extends Component {
                   className="form-control"
                   placeholder="اسم المستخدم"
                   name="full_name"
-                  value={this.state.name}
+                  value={this.state.jobject.full_name}
                   onChange={this.handleChange}
                   required
                 />
@@ -94,7 +134,7 @@ export default class AdminRegistration extends Component {
                   className="form-control"
                   placeholder="ادخل البريد الالكترونى الخاص بك"
                   name="email"
-                  value={this.state.email}
+                  value={this.state.jobject.email}
                   onChange={this.handleChange}
                   required
                 />
@@ -108,7 +148,7 @@ export default class AdminRegistration extends Component {
                   className="form-control"
                   placeholder="ادخل كلمة المرور"
                   name="password"
-                  value={this.state.password}
+                  value={this.state.jobject.password}
                   onChange={this.handleChange}
                   required
                 />
@@ -122,7 +162,7 @@ export default class AdminRegistration extends Component {
                   className="form-control"
                   placeholder="ادخل رقم الهاتف الخاص بك"
                   name="phone"
-                  value={this.state.phone}
+                  value={this.state.jobject.phone}
                   onChange={this.handleChange}
                   required
                 />
@@ -135,7 +175,7 @@ export default class AdminRegistration extends Component {
                   id="bday"
                   className="form-control"
                   name="birth_date"
-                  value={this.state.birthday}
+                  value={this.state.jobject.birth_date}
                   onChange={this.handleChange}
                   required
                 />
@@ -146,7 +186,7 @@ export default class AdminRegistration extends Component {
                   id="country"
                   className="form-control"
                   name="country"
-                  value={this.state.country}
+                  value={this.state.jobject.country}
                   onChange={this.handleChange}
                 >
                   <option value="Afganistan">Afghanistan</option>
@@ -451,6 +491,7 @@ export default class AdminRegistration extends Component {
                 التسجيل
               </button>
             </form>
+            <this.handleAPI />
           </div>
         </div>
       </div>
