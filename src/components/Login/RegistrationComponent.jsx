@@ -7,21 +7,24 @@ export default class Registration extends Component {
     super();
 
     this.state = {
-      guardian_email: "",
-      guardian_name: "",
-      guardian_phone: "",
+      jobject: {
+        guardian_email: "",
+        guardian_name: "",
+        guardian_phone: "",
 
-      email: "",
-      password: "",
-      full_name: "",
-      phone: "",
-      birth_date: "",
-      gender: true,
-      type: "student",
-      action: "register_staff",
-      profile_pic: "default",
-      country: "not null",
-      registeration_date: "2010-01-01"
+        email: "",
+        password: "",
+        full_name: "",
+        phone: "",
+        birth_date: "",
+        gender: true,
+        type: "student",
+        action: "register_staff",
+        profile_pic: "default",
+        country: "not null",
+        registeration_date: "2010-01-01"
+      },
+      guardian_req: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -32,19 +35,37 @@ export default class Registration extends Component {
     let target = e.target;
     let value = target.type === "checkbox" ? target.checked : target.value;
     let name = target.name;
+    var obj = this.state.jobject;
 
     if (value === "Male") {
+      obj[name] = true;
       this.setState({
-        [name]: true
+        jobject: obj
       });
     } else if (value === "Female") {
+      obj[name] = false;
       this.setState({
-        [name]: false
+        jobject: obj
       });
     } else {
+      obj[name] = value;
       this.setState({
-        [name]: value
+        jobject: obj
       });
+
+      if (name === "birth_date") {
+        if (!this.isLegal()) {
+          this.setState({
+            guardian_req: true
+          });
+          console.log(this.state.guardian_req);
+        }
+        if (this.isLegal()) {
+          this.setState({
+            guardian_req: false
+          });
+        }
+      }
     }
   }
 
@@ -52,10 +73,10 @@ export default class Registration extends Component {
     e.preventDefault();
 
     console.log("The form was submitted with the following data:");
-    console.log(this.state);
+    console.log(this.state.jobject);
 
     axios
-      .post("https://ayat-quran.herokuapp.com/v1/users", this.state)
+      .post("https://ayat-quran.herokuapp.com/v1/users", this.state.jobject)
       .then(res => {
         console.log(`statusCode: ${res.statusCode}`);
         console.log(res);
@@ -63,14 +84,18 @@ export default class Registration extends Component {
       .catch(error => {
         console.error(error);
       });
+  }
 
+  isLegal() {
     //age calculation
-    let birthYear = Number(this.state.birthday.split("-")[0]);
+    let birthYear = Number(this.state.jobject.birth_date.split("-")[0]);
     let currentYear = new Date().getFullYear();
     let age = currentYear - birthYear;
     let legal = age > 18;
+
     console.log(age);
     console.log(legal);
+    return legal;
   }
 
   render() {
@@ -89,8 +114,9 @@ export default class Registration extends Component {
                   className="form-control"
                   placeholder="اسم المستخدم"
                   name="full_name"
-                  value={this.state.name}
+                  value={this.state.jobject.name}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
 
@@ -102,8 +128,9 @@ export default class Registration extends Component {
                   className="form-control"
                   placeholder="ادخل البريد الالكترونى الخاص بك"
                   name="email"
-                  value={this.state.email}
+                  value={this.state.jobject.email}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
 
@@ -115,8 +142,9 @@ export default class Registration extends Component {
                   className="form-control"
                   placeholder="ادخل كلمة المرور"
                   name="password"
-                  value={this.state.password}
+                  value={this.state.jobject.password}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
 
@@ -128,8 +156,9 @@ export default class Registration extends Component {
                   className="form-control"
                   placeholder="ادخل رقم الهاتف الخاص بك"
                   name="phone"
-                  value={this.state.phone}
+                  value={this.state.jobject.phone}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
 
@@ -140,8 +169,9 @@ export default class Registration extends Component {
                   id="bday"
                   className="form-control"
                   name="birth_date"
-                  value={this.state.birthday}
+                  value={this.state.jobject.birth_date}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
 
@@ -153,8 +183,10 @@ export default class Registration extends Component {
                   className="form-control"
                   placeholder="ادخل اسم ولى أمرك"
                   name="guardian_name"
-                  value={this.state.guardianname}
+                  value={this.state.jobject.guardianname}
                   onChange={this.handleChange}
+                  disabled={!this.state.guardian_req}
+                  required
                 />
               </div>
 
@@ -166,8 +198,10 @@ export default class Registration extends Component {
                   className="form-control"
                   placeholder="ادخل البريد الالكترونى الخاص بولى الأمر"
                   name="guardian_email"
-                  value={this.state.guardianemail}
+                  value={this.state.jobject.guardianemail}
                   onChange={this.handleChange}
+                  disabled={!this.state.guardian_req}
+                  required
                 />
               </div>
 
@@ -179,8 +213,10 @@ export default class Registration extends Component {
                   className="form-control"
                   placeholder="ادخل رقم الهاتف الخاص بولى الأمر"
                   name="guardian_phone"
-                  value={this.state.guardianphone}
+                  value={this.state.jobject.guardianphone}
                   onChange={this.handleChange}
+                  disabled={!this.state.guardian_req}
+                  required
                 />
               </div>
 
@@ -190,7 +226,7 @@ export default class Registration extends Component {
                   id="country"
                   className="form-control"
                   name="country"
-                  value={this.state.country}
+                  value={this.state.jobject.country}
                   onChange={this.handleChange}
                 >
                   <option value="Afganistan">Afghanistan</option>

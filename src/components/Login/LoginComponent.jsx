@@ -72,6 +72,7 @@ export default class Login extends Component {
                   name="email"
                   value={this.state.email}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
 
@@ -85,6 +86,7 @@ export default class Login extends Component {
                   name="password"
                   value={this.state.password}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
 

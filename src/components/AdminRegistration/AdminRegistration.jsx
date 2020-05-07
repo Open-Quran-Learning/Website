@@ -82,6 +82,7 @@ export default class AdminRegistration extends Component {
                   name="full_name"
                   value={this.state.name}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
 
@@ -95,6 +96,7 @@ export default class AdminRegistration extends Component {
                   name="email"
                   value={this.state.email}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
 
@@ -108,6 +110,7 @@ export default class AdminRegistration extends Component {
                   name="password"
                   value={this.state.password}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
 
@@ -121,6 +124,7 @@ export default class AdminRegistration extends Component {
                   name="phone"
                   value={this.state.phone}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
 
@@ -133,6 +137,7 @@ export default class AdminRegistration extends Component {
                   name="birth_date"
                   value={this.state.birthday}
                   onChange={this.handleChange}
+                  required
                 />
               </div>
               <div className="form-group">
