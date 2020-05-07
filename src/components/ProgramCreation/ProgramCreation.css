@@ -126,21 +126,31 @@
 
 
 .profilePicSection {
+    margin-right: 2em;
     border-style: solid;
     border-color: #000000;
+    height: 25em;
+    width: 37%;
 }
 
 .profilePic {
+    width: 100%;
+    height: 100%;
 
 }
 
 .profileCoverSection {
+    margin-right: 2em;
+    width: 60%;
     border-style: solid;
     border-color: #000000;
+    height: 25em;
+    image-rendering: auto;
 }
 
 .profileCover {
     width: 100%;
+    height: 100%;
 }
 
 .submitButton {

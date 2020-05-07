@@ -326,6 +326,7 @@ const ProgramCreation = () => {
                     </label>
                 </div>
                 <br/>
+                <div className="pics">
                 <div className="profilePicSection">
                     <input type="file" onChange={event => handlePicChange(event)}></input>
                     <br/>
@@ -340,6 +341,7 @@ const ProgramCreation = () => {
                 <br/>
                 <br/>
                 <br/>
+                </div>
                 </div>
                 <div className="submitButton">
                     <button 
