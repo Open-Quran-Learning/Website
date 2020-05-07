@@ -1,0 +1,148 @@
+.creationForm {
+    text-align: right;
+}
+
+.nameSection {
+    padding: 1em;
+    background-color: #979797;
+    margin: 3em 2em 2em 2em;
+    border-right: solid #216601 0.5em;
+}
+
+.nameLabel {
+    margin-bottom: 1em;
+}
+
+#programName {
+    width: 25%;
+    margin-bottom: 1em;
+}
+
+.prSection {
+    padding: 1em;
+    background-color: #979797;
+    margin: 3em 2em 2em 2em;
+    border-right: solid #216601 0.5em;
+} 
+
+.prerequisiteLabel {
+    margin-bottom: 1em;
+}
+
+.prerequisite {
+    
+}
+
+#prerequisiteField {
+    width: 25%; 
+}
+
+.levelSection {
+    padding: 1em;
+    background-color: #979797;
+    margin: 3em 2em 2em 2em;
+    border-right: solid #216601 0.5em;
+}
+
+.levelLabel {
+    margin-bottom: 1em;   
+}
+
+#levelField {
+    width: 25%;
+    margin-bottom: 1em;
+}
+.categorySection {
+    padding: 1em;
+    background-color: #979797;
+    margin: 3em 2em 2em 2em;
+    border-right: solid #216601 0.5em;
+}
+
+.categoryLabel {
+    margin-bottom: 1em;
+}
+
+#categoryField {
+    width: 25%;
+    margin-bottom: 1em;
+}
+
+.faqSection {   
+    padding: 1em;
+    background-color: #979797;
+    margin: 3em 2em 2em 2em;
+    border-right: solid #216601 0.5em;
+}
+
+.faqLabel {
+    margin-bottom: 1em;
+}
+
+#questionField {
+    width: 25%;
+}
+
+#answerField {
+    width: 40%;
+    height: 8em;
+}
+
+.descriptionSection {
+    padding: 1em;
+    background-color: #979797;
+    margin: 3em 2em 2em 2em;
+    border-right: solid #216601 0.5em;
+}
+
+.descriptionLabel {
+    margin-bottom: 1em;
+}
+
+#descriptionField {
+    width: 40%;
+    height: 8em;
+    margin-bottom: 1em;
+}
+
+.availabilitySection {
+    padding: 1em;
+    background-color: #979797;
+    margin: 3em 2em 2em 2em;
+    border-right: solid #216601 0.5em;
+}
+
+.availabilityLabel {
+    margin-bottom: 1em;
+}
+
+#available {
+    margin-right: 1em;
+}
+
+#notAvailable {
+    margin-right: 1em;
+}
+
+
+.profilePicSection {
+    border-style: solid;
+    border-color: #000000;
+}
+
+.profilePic {
+
+}
+
+.profileCoverSection {
+    border-style: solid;
+    border-color: #000000;
+}
+
+.profileCover {
+    width: 100%;
+}
+
+.submitButton {
+    text-align: center;
+}
