@@ -2,25 +2,14 @@ import React, { useState, Fragment as div } from "react";
 import "./ManageLessons.scss";
 import { YouTubeThmbnailURL } from "./utils";
 import { useEffect } from "react";
+import PlusMinusButtons from "../Shared/PlusMinusButtons";
+import ManageCollectionState from "./ManageCollectionState";
 
 // TODO: fetch existing lessons in this course for intial state.
 const ManageLessons = ({ existingLessons, update }) => {
   const [lessons, updateLessons] = useState(existingLessons);
 
-  const updateOneLesson = (lesson, index) => {
-    console.log(lesson);
-    const current = [...lessons];
-    current[index] = { ...current[index], ...lesson };
-    updateLessons(current);
-  };
-
-  const addLesson = (lesson) => updateLessons([...lessons, lesson]);
-  const removeLesson = (index) => {
-    const current = [...lessons];
-    current.splice(index, 1);
-    console.log(current);
-    updateLessons(current);
-  };
+  const manageLessons = new ManageCollectionState([lessons, updateLessons]);
 
   useEffect(() => update(lessons), [lessons]);
 
@@ -36,37 +25,25 @@ const ManageLessons = ({ existingLessons, update }) => {
             references={lesson.references}
             index={i}
             update={(newLesson) => {
-              updateOneLesson(newLesson, i);
+              manageLessons.updateOne(newLesson, i);
             }}
           />
           {/* <div className="separator"></div> */}
         </div>
       ))}
-      <div className="plusMinusBtns">
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={() => {
-            addLesson({
-              videoUrl: "",
-              article: "",
-              references: [],
-            });
-          }}
-        >
-          +
-        </button>
-
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={() => {
-            removeLesson(lessons.length - 1);
-          }}
-        >
-          -
-        </button>
-      </div>
+      <PlusMinusButtons
+        onPlus={() => {
+          manageLessons.addOne({
+            videoUrl: "",
+            article: "",
+            references: [],
+          });
+        }}
+        onMinus={() => {
+          manageLessons.removeLast();
+        }}
+        minusDisabled={lessons.length == 0}
+      />
     </div>
   );
 };
@@ -156,22 +133,10 @@ const ManageLessonEdit = ({
 
 const ManageReferences = ({ initialReferences, update }) => {
   const [references, updateReferences] = useState([...initialReferences]);
-
-  const updateOneReference = (reference, index) => {
-    console.debug(reference);
-    const current = [...references];
-    current[index] = { ...current[index], ...reference };
-    updateReferences(current);
-  };
-
-  const addReference = (reference) =>
-    updateReferences([...references, reference]);
-  const removeReference = (index) => {
-    const current = [...references];
-    current.splice(index, 1);
-    console.log(current);
-    updateReferences(current);
-  };
+  const manageReferences = new ManageCollectionState([
+    references,
+    updateReferences,
+  ]);
 
   useEffect(() => {
     update(references);
@@ -189,7 +154,7 @@ const ManageReferences = ({ initialReferences, update }) => {
             placeholder={"اسم المرجع"}
             value={references[i].title}
             onInput={(e) => {
-              updateOneReference({ ...r, title: e.target.value }, i);
+              manageReferences.updateOne({ ...r, title: e.target.value }, i);
             }}
           />
           <input
@@ -198,35 +163,23 @@ const ManageReferences = ({ initialReferences, update }) => {
             placeholder={"رابط المرجع"}
             value={references[i].url}
             onInput={(e) => {
-              updateOneReference({ ...r, url: e.target.value }, i);
+              manageReferences.updateOne({ ...r, url: e.target.value }, i);
             }}
           />
         </div>
       ))}
-      <div className="plusMinusBtns">
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={() => {
-            addReference({
-              title: "",
-              url: "",
-            });
-          }}
-        >
-          +
-        </button>
-
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={() => {
-            removeReference(references.length - 1);
-          }}
-        >
-          -
-        </button>
-      </div>
+      <PlusMinusButtons
+        onPlus={() => {
+          manageReferences.addOne({
+            title: "",
+            url: "",
+          });
+        }}
+        onMinus={() => {
+          manageReferences.removeLast();
+        }}
+        minusDisabled={references.length == 0}
+      />
     </div>
   );
 };
