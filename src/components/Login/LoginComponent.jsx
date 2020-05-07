@@ -2,28 +2,32 @@ import React, { Component } from "react";
 import "./login.css";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { Redirect } from "react-router-dom";
+import { Alert } from "reactstrap";
 
 export default class Login extends Component {
   constructor() {
     super();
 
     this.state = {
-      email: "",
-      password: "",
-      action: "login"
+      jobject: { email: "", password: "", action: "login" },
+      api_state: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAPI = this.handleAPI.bind(this);
   }
 
   handleChange(e) {
     let target = e.target;
-    let value = target.type === "checkbox" ? target.checked : target.value;
     let name = target.name;
+    let value = target.value;
+    var obj = this.state.jobject;
 
+    obj[name] = value;
     this.setState({
-      [name]: value
+      jobject: obj
     });
   }
 
@@ -31,20 +35,62 @@ export default class Login extends Component {
     e.preventDefault();
 
     console.log("The form was submitted with the following data:");
-    console.log(this.state);
+    console.log(this.state.jobject);
 
     axios
-      .post("https://ayat-quran.herokuapp.com/v1/users", this.state)
+      .post("https://ayat-quran.herokuapp.com/v1/users", this.state.jobject)
       .then(res => {
         console.log(`statusCode: ${res.statusCode}`);
         console.log(res);
+
+        if (res.status == "200")
+          this.setState({
+            api_state: "success"
+          });
+        else if (res.status == "403")
+          this.setState({
+            api_state: res.data.status
+          });
+
         const cookies = new Cookies();
 
-        cookies.set("jwt", res.data.token, {
+        cookies.set("token", res.data.token, {
           path: "/",
-          maxAge: 60 * 60 * 24 * 7,
-          httpOnly: true
+          maxAge: 60 * 60 * 24 * 7
         }); //requires token-login- every 7 days
+        cookies.set("birth_date", res.data.birth_date, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("country_name", res.data.country_name, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("email", res.data.email, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("gender", res.data.gender, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("name", res.data.name, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("phone_number", res.data.phone_number, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("profile_picture", res.data.profile_picture, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("public_id", res.data.public_id, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+
         console.log(cookies.get("jwt"));
       })
       .catch(error => {
@@ -52,6 +98,26 @@ export default class Login extends Component {
       });
 
     // sent a GET request
+  }
+
+  handleAPI() {
+    if (this.state.api_state === "user is unauthorized")
+      return (
+        <div>
+          <Alert color="success">
+            {" "}
+            تأكد من ادخال الحساب وكلمة المرور الصحيحين
+          </Alert>
+          <Redirect to="/login" />
+        </div>
+      );
+    else if (this.state.api_state === "success")
+      return (
+        <div>
+          <Redirect to="/home" />
+        </div>
+      );
+    return "";
   }
 
   render() {
@@ -70,7 +136,7 @@ export default class Login extends Component {
                   className="form-control"
                   placeholder="ادخل البريد الالكترونى الخاص بك"
                   name="email"
-                  value={this.state.email}
+                  value={this.state.jobject.email}
                   onChange={this.handleChange}
                   required
                 />
@@ -84,7 +150,7 @@ export default class Login extends Component {
                   className="form-control"
                   placeholder="ادخل كلمة المرور الخاص بك"
                   name="password"
-                  value={this.state.password}
+                  value={this.state.jobject.password}
                   onChange={this.handleChange}
                   required
                 />
@@ -94,6 +160,7 @@ export default class Login extends Component {
                 تسجيل الدخول
               </button>
             </form>
+            <this.handleAPI />
           </div>
         </div>
       </div>
