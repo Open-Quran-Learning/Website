@@ -1,0 +1,42 @@
+.controlledFlow {
+  border: thin dashed #23b48c;
+  border-radius: 4px;
+  height: 70vh;
+  padding: 2em;
+  margin: 0.2em;
+}
+
+.flow {
+  height: 50vh;
+  overflow-y: scroll;
+  border: thin dashed #d7d2d2;
+  border-radius: 4px;
+  padding: 0.2em;
+
+  .fade-enter {
+    opacity: 0;
+  }
+  .fade-exit {
+    opacity: 1;
+  }
+  .fade-enter-active {
+    opacity: 1;
+  }
+  .fade-exit-active {
+    opacity: 0;
+  }
+  .fade-enter-active,
+  .fade-exit-active {
+    transition: opacity 100ms;
+  }
+}
+
+.navigationBtns {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  text-align: center;
+  padding: 2em;
+}

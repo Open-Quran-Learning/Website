@@ -7,7 +7,7 @@ import ManageCollectionState from "./ManageCollectionState";
 
 // TODO: fetch existing lessons in this course for intial state.
 const ManageLessons = ({ existingLessons, update }) => {
-  const [lessons, updateLessons] = useState(existingLessons);
+  const [lessons, updateLessons] = useState(existingLessons || []);
 
   const manageLessons = new ManageCollectionState([lessons, updateLessons]);
 
@@ -113,7 +113,7 @@ const ManageLessonEdit = ({
             value={content.article}
             placeholder={"اكتب مقال"}
             // id={articleInputId}
-            class="form-control"
+            className="form-control"
             rows="10"
             onInput={(e) => {
               updateContent({ ...content, article: e.target.value });

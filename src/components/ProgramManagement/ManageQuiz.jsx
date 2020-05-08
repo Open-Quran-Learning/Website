@@ -4,9 +4,9 @@ import ManageCollectionState from "./ManageCollectionState";
 import "./ManageQuiz.scss";
 
 //TODO fetch quiz data via api
-const ManageQuiz = ({ isNewQuiz, existingQuestions, update }) => {
+const ManageQuiz = ({ existingQuestions, update }) => {
   const [questions, updateQuestions] = useState(
-    isNewQuiz ? [] : existingQuestions
+    !existingQuestions ? [] : existingQuestions
   );
   const manageQuizzes = new ManageCollectionState([questions, updateQuestions]);
 
