@@ -173,6 +173,7 @@ export default class AdminRegistration extends Component {
                 <input
                   type="date"
                   id="bday"
+                  min="1960-01-01" max="2013-01-01"
                   className="form-control"
                   name="birth_date"
                   value={this.state.jobject.birth_date}
