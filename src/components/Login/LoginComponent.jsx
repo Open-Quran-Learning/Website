@@ -1,88 +1,169 @@
 import React, { Component } from "react";
-import "./login.css"
-import axios from 'axios';
-
+import "./login.css";
+import axios from "axios";
+import Cookies from "universal-cookie";
+import { Redirect } from "react-router-dom";
+import { Alert } from "reactstrap";
 
 export default class Login extends Component {
+  constructor() {
+    super();
 
-    constructor() {
-        super();
-        
-        this.state = {
-            email: '',
-            password: '',
-            action:"login"
-        };
+    this.state = {
+      jobject: { email: "", password: "", action: "login" },
+      api_state: ""
+    };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAPI = this.handleAPI.bind(this);
+  }
 
-    handleChange(e) {
-        let target = e.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let name = target.name;
+  handleChange(e) {
+    let target = e.target;
+    let name = target.name;
+    let value = target.value;
+    var obj = this.state.jobject;
 
-        this.setState({
-          [name]: value
+    obj[name] = value;
+    this.setState({
+      jobject: obj
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    console.log("The form was submitted with the following data:");
+    console.log(this.state.jobject);
+
+    axios
+      .post("https://ayat-quran.herokuapp.com/v1/users", this.state.jobject)
+      .then(res => {
+        console.log(`statusCode: ${res.statusCode}`);
+        console.log(res);
+
+        if (res.status == "200")
+          this.setState({
+            api_state: "success"
+          });
+        else if (res.status == "403")
+          this.setState({
+            api_state: res.data.status
+          });
+
+        const cookies = new Cookies();
+
+        cookies.set("token", res.data.token, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        }); //requires token-login- every 7 days
+        cookies.set("birth_date", res.data.birth_date, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
         });
-    }
+        cookies.set("country_name", res.data.country_name, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("email", res.data.email, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("gender", res.data.gender, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("name", res.data.name, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("phone_number", res.data.phone_number, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("profile_picture", res.data.profile_picture, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
+        cookies.set("public_id", res.data.public_id, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7
+        });
 
-    handleSubmit(e) {
-        e.preventDefault();
+        console.log(cookies.get("jwt"));
+      })
+      .catch(error => {
+        console.error(error);
+      });
 
-        console.log('The form was submitted with the following data:');
-        console.log(this.state);
+    // sent a GET request
+  }
 
+  handleAPI() {
+    if (this.state.api_state === "user is unauthorized")
+      return (
+        <div>
+          <Alert color="success">
+            {" "}
+            تأكد من ادخال الحساب وكلمة المرور الصحيحين
+          </Alert>
+          <Redirect to="/login" />
+        </div>
+      );
+    else if (this.state.api_state === "success")
+      return (
+        <div>
+          <Redirect to="/home" />
+        </div>
+      );
+    return "";
+  }
 
-         
+  render() {
+    return (
+      <div className="Con">
+        <div className="auth-wrapper">
+          <div className="auth-inner">
+            <form onSubmit={this.handleSubmit}>
+              <h3>تسجيل الدخول</h3>
 
-            axios
-            .post('https://ayat-quran.herokuapp.com/v1/users',this.state)
-            .then(res => {
-                console.log(`statusCode: ${res.statusCode}`)
-                console.log(res)
-            })
-            .catch(error => {
-                console.error(error)
-            })
-            
-            // sent a GET request
-            axios.get('https://ayat-quran.herokuapp.com/v1/users')
-            .then(response => {
-                console.log(response);
-            });
+              <div className="form-group">
+                <label>البريد الالكترونى</label>
+                <input
+                  type="email"
+                  id="email"
+                  className="form-control"
+                  placeholder="ادخل البريد الالكترونى الخاص بك"
+                  name="email"
+                  value={this.state.jobject.email}
+                  onChange={this.handleChange}
+                  required
+                />
+              </div>
 
+              <div className="form-group">
+                <label>كلمة المرور</label>
+                <input
+                  type="password"
+                  id="password"
+                  className="form-control"
+                  placeholder="ادخل كلمة المرور الخاص بك"
+                  name="password"
+                  value={this.state.jobject.password}
+                  onChange={this.handleChange}
+                  required
+                />
+              </div>
 
-
-    }
-
-
-    render() {
-        return (
-            <div className="Con">
-            <div className="auth-wrapper">
-            <div className="auth-inner">
-            <form  onSubmit={this.handleSubmit}>
-                <h3>تسجيل الدخول</h3>
-
-                <div className="form-group">
-                    <label>البريد الالكترونى</label>
-                    <input type="email" id="email" className="form-control" placeholder="ادخل البريد الالكترونى الخاص بك" name="email" value={this.state.email} onChange={this.handleChange} />
-                </div>
-
-                <div className="form-group">
-                    <label>كلمة المرور</label>
-                    <input type="password" id="password" className="form-control" placeholder="ادخل كلمة المرور الخاص بك"  name="password" value={this.state.password} onChange={this.handleChange}/>
-                </div>
-
-              
-                <button type="submit" className="btn btn-primary btn-block">تسجيل الدخول</button>
-                
+              <button type="submit" className="btn btn-primary btn-block">
+                تسجيل الدخول
+              </button>
             </form>
-            </div>
-            </div>
-            </div>
-        );
-    }
+            <this.handleAPI />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
