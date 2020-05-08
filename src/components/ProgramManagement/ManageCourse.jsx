@@ -3,9 +3,9 @@ import "./ManageCourse.scss";
 import ManageLessons from "./ManageLessons";
 
 //TODO: fetch course data from a given id.
-const ManageCourse = ({ isNewCourse, courseData }) => {
+const ManageCourse = ({ courseData }) => {
   const [course, updateCourse] = useState(
-    isNewCourse
+    !courseData
       ? { course_name: "", course_description: "", lessons: [] }
       : courseData
   );
