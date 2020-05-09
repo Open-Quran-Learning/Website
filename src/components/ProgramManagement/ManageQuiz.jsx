@@ -1,31 +1,25 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React from "react";
 import PlusMinusButtons from "../Shared/PlusMinusButtons";
 import ManageCollectionState from "./ManageCollectionState";
 import "./ManageQuiz.scss";
 
 //TODO fetch quiz data via api
-const ManageQuiz = ({ existingQuestions, update }) => {
-  const [questions, updateQuestions] = useState(
-    !existingQuestions ? [] : existingQuestions
-  );
-  const manageQuizzes = new ManageCollectionState([questions, updateQuestions]);
-
-  useEffect(() => {
-    update(questions);
-  }, [questions]);
+const ManageQuiz = React.memo(({ existingQuestions, update }) => {
+  const manageQuizzes = new ManageCollectionState([
+    existingQuestions || [],
+    update,
+  ]);
 
   return (
     <div className="manageQuiz">
       <label>الأسئلة</label>
       <ul>
-        {questions.map((q, i) => {
+        {manageQuizzes.collection.map((q, i) => {
           return (
             <ManageQuestion
               key={i}
-              question={q}
-              updateQuestion={(question) =>
-                manageQuizzes.updateOne(question, i)
-              }
+              content={q}
+              updateContent={(question) => manageQuizzes.updateOne(question, i)}
             />
           );
         })}
@@ -34,7 +28,7 @@ const ManageQuiz = ({ existingQuestions, update }) => {
         onPlus={() => {
           manageQuizzes.addOne({
             questionTitle: "",
-            order: questions.length - 1,
+            order: manageQuizzes.collection.length,
             type: "WRITTEN",
             fullMark: 0,
           });
@@ -42,17 +36,13 @@ const ManageQuiz = ({ existingQuestions, update }) => {
         onMinus={() => {
           manageQuizzes.removeLast();
         }}
-        minusDisabled={questions.length == 0}
+        minusDisabled={manageQuizzes.collection.length == 0}
       />
     </div>
   );
-};
+});
 
-const ManageQuestion = ({ question, updateQuestion }) => {
-  const [content, updateContent] = useState(question);
-
-  useEffect(() => updateQuestion(content), [content]);
-
+const ManageQuestion = React.memo(({ content, updateContent }) => {
   return (
     <li className="manageQuestion">
       <input
@@ -67,12 +57,12 @@ const ManageQuestion = ({ question, updateQuestion }) => {
       <label className="mcqLabel">
         <input
           type="checkbox"
-          value=""
+          checked={content.type === "MCQ"}
           onChange={(e) =>
             updateContent({
               ...content,
               type: e.target.checked ? "MCQ" : "WRITTEN",
-              answers: [],
+              answers: content.type === "MCQ" ? content.answers : [],
             })
           }
         />
@@ -84,22 +74,19 @@ const ManageQuestion = ({ question, updateQuestion }) => {
           update={(answers) => updateContent({ ...content, answers: answers })}
         />
       ) : (
-        []
+        ""
       )}
     </li>
   );
-};
+});
 
-const ManageMCQAnswers = ({ existingAnswers, update }) => {
-  const [answers, updateAnswers] = useState(existingAnswers || []);
-  const manageAnswers = new ManageCollectionState([answers, updateAnswers]);
-
-  useEffect(() => update(manageAnswers.collection), [manageAnswers.collection]);
+const ManageMCQAnswers = React.memo(({ answers, update }) => {
+  const manageAnswers = new ManageCollectionState([answers || [], update]);
 
   return (
     <>
       <ul>
-        {answers.map((a, i) => {
+        {manageAnswers.collection.map((a, i) => {
           return (
             <li key={i}>
               <input
@@ -109,7 +96,10 @@ const ManageMCQAnswers = ({ existingAnswers, update }) => {
                 value={a.answerText}
                 onInput={(e) => {
                   manageAnswers.updateOne(
-                    { ...answers[i], answerText: e.target.value },
+                    {
+                      ...manageAnswers.collection[i],
+                      answerText: e.target.value,
+                    },
                     i
                   );
                 }}
@@ -117,11 +107,11 @@ const ManageMCQAnswers = ({ existingAnswers, update }) => {
               <label className="correctAnswerLabel">
                 <input
                   type="checkbox"
-                  value={a.isCorrect}
+                  checked={a.isCorrect}
                   onChange={(e) =>
                     manageAnswers.updateOne(
                       {
-                        ...answers[i],
+                        ...manageAnswers.collection[i],
                         isCorrect: e.target.checked,
                       },
                       i
@@ -144,10 +134,10 @@ const ManageMCQAnswers = ({ existingAnswers, update }) => {
         onMinus={() => {
           manageAnswers.removeLast();
         }}
-        minusDisabled={answers.length == 0}
+        minusDisabled={manageAnswers.collection.length == 0}
       />
     </>
   );
-};
+});
 
 export default ManageQuiz;
