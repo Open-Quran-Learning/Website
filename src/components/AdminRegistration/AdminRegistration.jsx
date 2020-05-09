@@ -68,7 +68,7 @@ export default class AdminRegistration extends Component {
     axios
       .post("https://ayat-quran.herokuapp.com/v1/users", this.state.jobject)
       .then(res => {
-        console.log(`statusCode: ${res.statusCode}`);
+        console.log(`statusCode: ${res.status}`);
         console.log(res);
 
         this.setState({

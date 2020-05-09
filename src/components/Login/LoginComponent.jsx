@@ -40,7 +40,7 @@ export default class Login extends Component {
     axios
       .post("https://ayat-quran.herokuapp.com/v1/users", this.state.jobject)
       .then(res => {
-        console.log(`statusCode: ${res.statusCode}`);
+        console.log(`statusCode: ${res.status}`);
         console.log(res);
 
         if (res.status == "200")
@@ -58,27 +58,7 @@ export default class Login extends Component {
           path: "/",
           maxAge: 60 * 60 * 24 * 7
         }); //requires token-login- every 7 days
-        cookies.set("birth_date", res.data.birth_date, {
-          path: "/",
-          maxAge: 60 * 60 * 24 * 7
-        });
-        cookies.set("country_name", res.data.country_name, {
-          path: "/",
-          maxAge: 60 * 60 * 24 * 7
-        });
-        cookies.set("email", res.data.email, {
-          path: "/",
-          maxAge: 60 * 60 * 24 * 7
-        });
-        cookies.set("gender", res.data.gender, {
-          path: "/",
-          maxAge: 60 * 60 * 24 * 7
-        });
         cookies.set("name", res.data.name, {
-          path: "/",
-          maxAge: 60 * 60 * 24 * 7
-        });
-        cookies.set("phone_number", res.data.phone_number, {
           path: "/",
           maxAge: 60 * 60 * 24 * 7
         });
@@ -90,8 +70,6 @@ export default class Login extends Component {
           path: "/",
           maxAge: 60 * 60 * 24 * 7
         });
-
-        console.log(cookies.get("jwt"));
       })
       .catch(error => {
         console.error(error);
