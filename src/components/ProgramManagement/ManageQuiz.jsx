@@ -50,7 +50,7 @@ const ManageQuestion = React.memo(({ content, updateContent }) => {
         type="text"
         placeholder={"السؤال"}
         value={content.questionTitle}
-        onInput={(e) => {
+        onChange={(e) => {
           updateContent({ ...content, questionTitle: e.target.value });
         }}
       />
