@@ -19,7 +19,7 @@ export const FlowModal = ({
 
   return (
     <div className="modalFlow">
-      <Modal className="modal-xl" isOpen={shown}>
+      <Modal unmountOnClose={true} className="modal-xl" isOpen={isShown}>
         <ModalHeader> {flowStops[currentStop].title} </ModalHeader>
         <ModalBody>
           <div className="flowModalContent">
