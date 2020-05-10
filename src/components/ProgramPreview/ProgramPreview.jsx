@@ -18,7 +18,7 @@ class ProgramPreview extends Component {
   render() {
     return (
       <div className="col-6 col-sm-2 m-3 programPreview">
-        <Card style={{ width: "125%", height: "100%" }}>
+        <Card style={{ width: "100%", height: "100%" }}>
           <CardBody>
             <CardImg width="100%" src="./assets/images/logo.png" />
             <CardHeader tag="h4">اسم البرنامج</CardHeader>

@@ -1,3 +1,8 @@
 .programPreview {
   color: #008600;
+  min-width: 14em;
+}
+
+.programPreview h4{
+
 }

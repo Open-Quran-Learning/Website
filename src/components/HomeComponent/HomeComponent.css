@@ -2,3 +2,8 @@
   text-align: right;
   color: #1a8a1a;
 }
+.programSection {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
