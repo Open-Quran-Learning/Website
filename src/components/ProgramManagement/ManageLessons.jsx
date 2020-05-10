@@ -1,52 +1,9 @@
 import React, { useState } from "react";
 import "./ManageLessons.scss";
-import { YouTubeThmbnailURL } from "./utils";
+import { YouTubeThmbnailURL } from "./Utils/utils";
 import { useEffect } from "react";
 import PlusMinusButtons from "../Shared/PlusMinusButtons";
 import ManageCollectionState from "./ManageCollectionState";
-
-// TODO: fetch existing lessons in this course for intial state.
-export const ManageManyLessons = ({ existingLessons, update }) => {
-  const [lessons, updateLessons] = useState(existingLessons || []);
-
-  const manageLessons = new ManageCollectionState([lessons, updateLessons]);
-
-  useEffect(() => update(lessons), [lessons]);
-
-  return (
-    <div className="manageLessons">
-      {lessons.map((lesson, i) => (
-        <div key={i}>
-          <ManageLesson
-            title={lesson.title}
-            description={lesson.description}
-            videoUrl={lesson.videoUrl}
-            article={lesson.article}
-            references={lesson.references}
-            index={i}
-            update={(newLesson) => {
-              manageLessons.updateOne(newLesson, i);
-            }}
-          />
-          {/* <div className="separator"></div> */}
-        </div>
-      ))}
-      <PlusMinusButtons
-        onPlus={() => {
-          manageLessons.addOne({
-            videoUrl: "",
-            article: "",
-            references: [],
-          });
-        }}
-        onMinus={() => {
-          manageLessons.removeLast();
-        }}
-        minusDisabled={lessons.length == 0}
-      />
-    </div>
-  );
-};
 
 export const ManageLesson = React.memo(
   ({ title, description, videoUrl, article, references, index, update }) => {
@@ -69,7 +26,7 @@ export const ManageLesson = React.memo(
             type="text"
             placeholder={"اسم الدرس"}
             value={title}
-            onInput={(e) => {
+            onChange={(e) => {
               update({ ...content, title: e.target.value });
             }}
           />
@@ -175,5 +132,3 @@ const ManageReferences = React.memo(({ references, update }) => {
     </div>
   );
 });
-
-export default ManageManyLessons;
