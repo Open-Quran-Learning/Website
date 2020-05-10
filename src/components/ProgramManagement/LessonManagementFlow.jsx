@@ -6,7 +6,7 @@ import { ManageLesson } from "./ManageLessons";
 import { FlowModal } from "../Shared/Flow/Flow";
 import { isQuizValid, isLessonValid } from "./Utils/validation";
 
-const LessonManagementFlow = ({ lessonID, onFinish }) => {
+export const LessonManagementFlow = ({ lessonID, onFinish }) => {
   const newLesson =
     lessonID === undefined || lessonID === null || lessonID === "";
 
@@ -65,10 +65,7 @@ const LessonManagementFlow = ({ lessonID, onFinish }) => {
     <FlowModal
       runBeforeNext={runBeforeNext}
       canGoNext={canGoNext}
-      isShown={true}
       flowStops={flowStops}
-      onFinish={onFinish}
-      onCancel={onFinish}
     />
   );
 };

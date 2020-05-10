@@ -11,7 +11,7 @@ import { isCourseValid, isQuizValid } from "./Utils/validation";
 import { FlowModal } from "../Shared/Flow/Flow";
 
 //TODO: fetch lessons from API by courseID
-export const LessonsListing = React.memo(({ courseID }) => {
+const LessonsListing = React.memo(({ courseID }) => {
   const manageLessons = new ManageCollectionState(
     useState([{ title: "ما لا يسع المسلم جهله" }])
   );
@@ -126,10 +126,7 @@ const CourseManagementFlow = ({ courseID, onFinish }) => {
     <FlowModal
       runBeforeNext={runBeforeNext}
       canGoNext={canGoNext}
-      isShown={true}
       flowStops={flowStops}
-      onFinish={onFinish}
-      onCancel={onFinish}
     />
   );
 };

@@ -12,14 +12,14 @@ export const FlowModal = ({
   onCancel,
 }) => {
   const [currentStop, updateCurrentStop] = useState(0);
-  const [shown, setShown] = useState(isShown);
+  const [shown, setShown] = useState(true);
 
   const firstStop = currentStop === 0;
   const lastStop = currentStop === flowStops.length - 1;
 
   return (
     <div className="modalFlow">
-      <Modal unmountOnClose={true} className="modal-xl" isOpen={isShown}>
+      <Modal unmountOnClose={true} className="modal-xl" isOpen={shown}>
         <ModalHeader> {flowStops[currentStop].title} </ModalHeader>
         <ModalBody>
           <div className="flowModalContent">
