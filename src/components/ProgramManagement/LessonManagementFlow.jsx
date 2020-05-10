@@ -54,8 +54,6 @@ const LessonManagementFlow = ({ lessonID, onFinish }) => {
         <ManageQuiz
           existingQuestions={lesson.quiz}
           update={(newQuiz) => {
-            console.log(newQuiz);
-
             updateLesson({ ...lesson, quiz: newQuiz });
           }}
         />
