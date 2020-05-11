@@ -4,63 +4,14 @@ import "./ProgramManagementFlow.scss";
 import ManageQuiz from "./ManageQuiz";
 import { FlowModal } from "../Shared/Flow/Flow";
 import ProgramCreation from "../ProgramCreation/ProgramCreation";
-import CourseManagementFlow from "./CourseManagementFlow";
-import ManageCollectionState from "./ManageCollectionState";
 import { useState } from "react";
+import { isQuizValid } from "./Utils/validation";
+import { CoursesListing } from "./CourseManagementFlow";
+import ManageCollectionState from "./ManageCollectionState";
 import PlusMinusButtons from "../Shared/PlusMinusButtons";
 import { userIsSure } from "./Utils/utils";
-import { isQuizValid } from "./Utils/validation";
 
-//TODO: fetch courses from API by courseID
-const CoursesListing = React.memo(({ programID }) => {
-  const manageCourses = new ManageCollectionState(
-    useState([{ title: "كورس في الجدعنة" }])
-  );
-
-  const [managedCourseID, setManagedCourseID] = useState(undefined);
-  const [shouldManage, setShouldManage] = useState(false);
-
-  return (
-    <div className="coursesListing">
-      <ul>
-        {manageCourses.collection.map((c, i) => {
-          return (
-            <li key={i}>
-              <button
-                type="button"
-                className="btn btn-link"
-                onClick={() => {
-                  setManagedCourseID(c.id);
-                  setShouldManage(true);
-                }}
-              >
-                {`${i + 1} – ${c.title}`}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-      <CourseManagementFlow
-        courseID={managedCourseID}
-        isShown={shouldManage}
-        onFinish={() => setShouldManage(false)}
-      />
-
-      <PlusMinusButtons
-        onPlus={() => {
-          setManagedCourseID(undefined); // new lesson.
-          setShouldManage(true);
-        }}
-        onMinus={() => {
-          if (userIsSure()) manageCourses.removeLast();
-        }}
-        minusDisabled={manageCourses.collection.length == 0}
-      />
-    </div>
-  );
-});
-
-const ProgramManagementFlow = ({ programID, isShown, onFinish }) => {
+export const ProgramManagementFlow = ({ programID, isShown, onFinish }) => {
   const emptyState = {
     assessmentQuiz: [],
   };
@@ -105,7 +56,7 @@ const ProgramManagementFlow = ({ programID, isShown, onFinish }) => {
       title: "امتحان القبول",
       content: (
         <ManageQuiz
-          existingQuestions={program.quiz}
+          existingQuestions={program.assessmentQuiz}
           update={(newQuiz) => {
             updateProgram({ ...program, assessmentQuiz: newQuiz });
           }}
@@ -126,4 +77,51 @@ const ProgramManagementFlow = ({ programID, isShown, onFinish }) => {
   );
 };
 
-export default ProgramManagementFlow;
+//TODO: fetch programs from API by userID
+export const ProgramsListing = ({ userID }) => {
+  const managePrograms = new ManageCollectionState(
+    useState([{ title: "برنامج تاج الكرامة" }])
+  );
+
+  const [managedProgramID, setManagedProgramID] = useState(undefined);
+  const [shouldManage, setShouldManage] = useState(false);
+
+  return (
+    <div className="programsListing">
+      <ul>
+        {managePrograms.collection.map((p, i) => {
+          return (
+            <li key={i}>
+              <button
+                type="button"
+                className="btn btn-link"
+                onClick={() => {
+                  setManagedProgramID(p.id);
+                  setShouldManage(true);
+                }}
+              >
+                {`${i + 1} – ${p.title}`}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      <ProgramManagementFlow
+        programID={managedProgramID}
+        isShown={shouldManage}
+        onFinish={() => setShouldManage(false)}
+      />
+
+      <PlusMinusButtons
+        onPlus={() => {
+          setManagedProgramID(undefined); // new lesson.
+          setShouldManage(true);
+        }}
+        onMinus={() => {
+          if (userIsSure()) managePrograms.removeLast();
+        }}
+        minusDisabled={managePrograms.collection.length == 0}
+      />
+    </div>
+  );
+};
