@@ -15,7 +15,7 @@ const ManageCourse = React.memo(
             className="courseTitle form-control"
             type="text"
             placeholder={"اسم الكورس"}
-            value={course.course_name}
+            defaultValue={course.course_name}
             onChange={(e) => {
               update({ ...course, course_name: e.target.value });
             }}
@@ -25,7 +25,7 @@ const ManageCourse = React.memo(
             type="text"
             placeholder={"نُبذة عن الكورس"}
             rows="6"
-            value={course.course_description}
+            defaultValue={course.course_description}
             onChange={(e) => {
               update({ ...course, course_description: e.target.value });
             }}

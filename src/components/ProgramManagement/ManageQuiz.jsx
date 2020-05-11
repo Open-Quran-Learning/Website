@@ -51,7 +51,7 @@ const ManageQuestion = React.memo(({ content, updateContent }) => {
         className="questionTitleInput form-control"
         type="text"
         placeholder={"السؤال"}
-        value={content.questionTitle}
+        defaultValue={content.questionTitle}
         onChange={(e) => {
           updateContent({ ...content, questionTitle: e.target.value });
         }}
@@ -59,7 +59,7 @@ const ManageQuestion = React.memo(({ content, updateContent }) => {
       <label className="mcqLabel">
         <input
           type="checkbox"
-          checked={content.type === "MCQ"}
+          defaultChecked={content.type === "MCQ"}
           onChange={(e) =>
             updateContent({
               ...content,
@@ -95,7 +95,7 @@ const ManageMCQAnswers = React.memo(({ answers, update }) => {
                 className="answerInput form-control"
                 type="text"
                 placeholder={"اجابة"}
-                value={a.answerText}
+                defaultValue={a.answerText}
                 onInput={(e) => {
                   manageAnswers.updateOne(
                     {
@@ -109,7 +109,7 @@ const ManageMCQAnswers = React.memo(({ answers, update }) => {
               <label className="correctAnswerLabel">
                 <input
                   type="checkbox"
-                  checked={a.isCorrect}
+                  defaultChecked={a.isCorrect}
                   onChange={(e) =>
                     manageAnswers.updateOne(
                       {

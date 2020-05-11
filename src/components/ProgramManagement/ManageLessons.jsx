@@ -25,7 +25,7 @@ export const ManageLesson = React.memo(
             className="lessonTitle form-control"
             type="text"
             placeholder={"اسم الدرس"}
-            value={title}
+            defaultValue={title}
             onChange={(e) => {
               update({ ...content, title: e.target.value });
             }}
@@ -34,7 +34,7 @@ export const ManageLesson = React.memo(
             className="lessonDescription form-control"
             type="text"
             placeholder={"نُبذة قصيرة عن الدرس"}
-            value={description}
+            defaultValue={description}
             onInput={(e) => {
               update({ ...content, description: e.target.value });
             }}
@@ -47,7 +47,7 @@ export const ManageLesson = React.memo(
               className="ytVideoInput form-control"
               type="text"
               placeholder={"رابط الڤيديو"}
-              value={videoUrl}
+              defaultValue={videoUrl}
               onInput={(e) => {
                 const url = e.target.value;
                 update({ ...content, videoUrl: url });
@@ -57,7 +57,7 @@ export const ManageLesson = React.memo(
           </div>
           <div className="articleInput">
             <textarea
-              value={article}
+              defaultValue={article}
               placeholder={"اكتب مقال"}
               // id={articleInputId}
               className="form-control"
@@ -95,7 +95,7 @@ const ManageReferences = React.memo(({ references, update }) => {
             className="refTitleInput form-control"
             type="text"
             placeholder={"اسم المرجع"}
-            value={manageReferences.collection[i].title}
+            defaultValue={manageReferences.collection[i].title}
             onInput={(e) => {
               manageReferences.updateOne(
                 { ...manageReferences.collection[i], title: e.target.value },
@@ -107,7 +107,7 @@ const ManageReferences = React.memo(({ references, update }) => {
             className="refUrlInput form-control"
             type="text"
             placeholder={"رابط المرجع"}
-            value={manageReferences.collection[i].url}
+            defaultValue={manageReferences.collection[i].url}
             onInput={(e) => {
               manageReferences.updateOne(
                 { ...manageReferences.collection[i], url: e.target.value },
