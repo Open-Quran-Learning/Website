@@ -1,7 +1,13 @@
 import React, { useState, useEffect, Fragment as li } from "react";
 import "./PlusMinusButtons.scss";
 
-const PlusMinusButtons = ({ onPlus, onMinus, plusDisabled, minusDisabled }) => {
+const PlusMinusButtons = ({
+  description,
+  onPlus,
+  onMinus,
+  plusDisabled,
+  minusDisabled,
+}) => {
   return (
     <div className="plusMinusBtns">
       <button
@@ -21,6 +27,7 @@ const PlusMinusButtons = ({ onPlus, onMinus, plusDisabled, minusDisabled }) => {
       >
         -
       </button>
+      <label>{description}</label>
     </div>
   );
 };
