@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import "./login.css";
 import axios from "axios";
-import Cookies from "universal-cookie";
 import { Redirect } from "react-router-dom";
 import { Alert } from "reactstrap";
+import {
+  setStorage,
+  getStorage,
+  removeStorage
+} from "../../shared/LocalStorage";
 
 export default class Login extends Component {
   constructor() {
@@ -52,24 +56,11 @@ export default class Login extends Component {
             api_state: res.data.status
           });
 
-        const cookies = new Cookies();
-
-        cookies.set("token", res.data.token, {
-          path: "/",
-          maxAge: 60 * 60 * 24 * 7
-        }); //requires token-login- every 7 days
-        cookies.set("name", res.data.name, {
-          path: "/",
-          maxAge: 60 * 60 * 24 * 7
-        });
-        cookies.set("profile_picture", res.data.profile_picture, {
-          path: "/",
-          maxAge: 60 * 60 * 24 * 7
-        });
-        cookies.set("public_id", res.data.public_id, {
-          path: "/",
-          maxAge: 60 * 60 * 24 * 7
-        });
+        setStorage("token", res.data.token, 7);
+        setStorage("name", res.data.name, 7);
+        setStorage("profile_picture", res.data.profile_picture, 7);
+        setStorage("public_id", res.data.public_id, 7);
+        //console.log(getStorage("token"));
       })
       .catch(error => {
         console.error(error);
