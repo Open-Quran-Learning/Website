@@ -21,7 +21,7 @@ const CoursesListing = React.memo(({ programID }) => {
   const [shouldManage, setShouldManage] = useState(false);
 
   return (
-    <div className="lessonsListing">
+    <div className="coursesListing">
       <ul>
         {manageCourses.collection.map((c, i) => {
           return (
@@ -40,14 +40,12 @@ const CoursesListing = React.memo(({ programID }) => {
           );
         })}
       </ul>
-      {shouldManage ? (
-        <CourseManagementFlow
-          onFinish={() => setShouldManage(false)}
-          courseID={managedCourseID}
-        />
-      ) : (
-        ""
-      )}
+      <CourseManagementFlow
+        courseID={managedCourseID}
+        isShown={shouldManage}
+        onFinish={() => setShouldManage(false)}
+      />
+
       <PlusMinusButtons
         onPlus={() => {
           setManagedCourseID(undefined); // new lesson.
@@ -62,7 +60,7 @@ const CoursesListing = React.memo(({ programID }) => {
   );
 });
 
-const ProgramManagementFlow = ({ programID, onFinish }) => {
+const ProgramManagementFlow = ({ programID, isShown, onFinish }) => {
   const emptyState = {
     assessmentQuiz: [],
   };
@@ -118,9 +116,12 @@ const ProgramManagementFlow = ({ programID, onFinish }) => {
 
   return (
     <FlowModal
+      isShown={isShown}
       runBeforeNext={runBeforeNext}
       canGoNext={canGoNext}
       flowStops={flowStops}
+      onFinish={onFinish}
+      onCancel={onFinish}
     />
   );
 };
