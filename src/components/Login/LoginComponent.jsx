@@ -6,7 +6,9 @@ import { Alert } from "reactstrap";
 import {
   setStorage,
   getStorage,
-  removeStorage
+  removeStorage,
+  setUserData,
+  getUserData
 } from "../../shared/LocalStorage";
 
 export default class Login extends Component {
@@ -56,11 +58,14 @@ export default class Login extends Component {
             api_state: res.data.status
           });
 
-        setStorage("token", res.data.token, 7);
-        setStorage("name", res.data.name, 7);
-        setStorage("profile_picture", res.data.profile_picture, 7);
-        setStorage("public_id", res.data.public_id, 7);
-        //console.log(getStorage("token"));
+        let data = {
+          token: res.data.token,
+          name: res.data.name,
+          profile_picture: res.data.profile_picture,
+          public_id: res.data.public_id
+        };
+        setUserData(data);
+        console.log(getUserData());
       })
       .catch(error => {
         console.error(error);

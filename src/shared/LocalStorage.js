@@ -73,3 +73,24 @@ export function setStorage(key, value, expires) {
     }
     return true;
 }
+
+
+export function getUserData(){
+    let data = {
+        token:getStorage("token"),
+        name:getStorage("name"),
+        profile_picture:getStorage("profile_picture"),
+        public_id:getStorage("public_id")
+    }
+    return(
+        data
+    );
+}
+
+export function setUserData(data){
+
+    setStorage("token", data.token, 7);
+    setStorage("name", data.name, 7);
+    setStorage("profile_picture", data.profile_picture, 7);
+    setStorage("public_id", data.public_id, 7);  
+}
