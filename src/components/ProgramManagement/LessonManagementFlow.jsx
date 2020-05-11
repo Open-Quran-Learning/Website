@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import "./ProgramManagementFlow.scss";
+import "./LessonManagementFlow.scss";
 
 import ManageQuiz from "./ManageQuiz";
 import { ManageLesson } from "./ManageLessons";
 import { FlowModal } from "../Shared/Flow/Flow";
 import { isQuizValid, isLessonValid } from "./Utils/validation";
+import ManageCollectionState from "./ManageCollectionState";
+import PlusMinusButtons from "../Shared/PlusMinusButtons";
+import { userIsSure } from "./Utils/utils";
 
 export const LessonManagementFlow = ({ lessonID, isShown, onFinish }) => {
   const newLesson =
@@ -73,4 +76,51 @@ export const LessonManagementFlow = ({ lessonID, isShown, onFinish }) => {
   );
 };
 
-export default LessonManagementFlow;
+//TODO: fetch lessons from API by courseID
+export const LessonsListing = ({ courseID }) => {
+  const manageLessons = new ManageCollectionState(
+    useState([{ title: "ما لا يسع المسلم جهله" }])
+  );
+
+  const [managedLessonID, setManagedLessonID] = useState(undefined);
+  const [shouldManage, setShouldManage] = useState(false);
+
+  return (
+    <div className="lessonsListing">
+      <ul>
+        {manageLessons.collection.map((l, i) => {
+          return (
+            <li key={i}>
+              <button
+                type="button"
+                className="btn btn-link"
+                onClick={() => {
+                  setManagedLessonID(l.id);
+                  setShouldManage(true);
+                }}
+              >
+                {`${i + 1} – ${l.title}`}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      <LessonManagementFlow
+        isShown={shouldManage}
+        onFinish={() => setShouldManage(false)}
+        lessonID={managedLessonID}
+      />
+
+      <PlusMinusButtons
+        onPlus={() => {
+          setManagedLessonID(undefined); // new lesson.
+          setShouldManage(true);
+        }}
+        onMinus={() => {
+          if (userIsSure()) manageLessons.removeLast();
+        }}
+        minusDisabled={manageLessons.collection.length == 0}
+      />
+    </div>
+  );
+};

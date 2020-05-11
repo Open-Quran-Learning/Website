@@ -2,64 +2,15 @@ import React from "react";
 import ManageCourse from "./ManageCourse";
 import ManageQuiz from "./ManageQuiz";
 import "./CourseManagementFlow.scss";
-import LessonManagementFlow from "./LessonManagementFlow";
 import { userIsSure } from "./Utils/utils";
 import ManageCollectionState from "./ManageCollectionState";
 import PlusMinusButtons from "../Shared/PlusMinusButtons";
 import { useState } from "react";
 import { isCourseValid, isQuizValid } from "./Utils/validation";
 import { FlowModal } from "../Shared/Flow/Flow";
+import { LessonsListing } from "./LessonManagementFlow";
 
-//TODO: fetch lessons from API by courseID
-const LessonsListing = React.memo(({ courseID }) => {
-  const manageLessons = new ManageCollectionState(
-    useState([{ title: "ما لا يسع المسلم جهله" }])
-  );
-
-  const [managedLessonID, setManagedLessonID] = useState(undefined);
-  const [shouldManage, setShouldManage] = useState(false);
-
-  return (
-    <div className="lessonsListing">
-      <ul>
-        {manageLessons.collection.map((l, i) => {
-          return (
-            <li key={i}>
-              <button
-                type="button"
-                className="btn btn-link"
-                onClick={() => {
-                  setManagedLessonID(l.id);
-                  setShouldManage(true);
-                }}
-              >
-                {`${i + 1} – ${l.title}`}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-      <LessonManagementFlow
-        isShown={shouldManage}
-        onFinish={() => setShouldManage(false)}
-        lessonID={managedLessonID}
-      />
-
-      <PlusMinusButtons
-        onPlus={() => {
-          setManagedLessonID(undefined); // new lesson.
-          setShouldManage(true);
-        }}
-        onMinus={() => {
-          if (userIsSure()) manageLessons.removeLast();
-        }}
-        minusDisabled={manageLessons.collection.length == 0}
-      />
-    </div>
-  );
-});
-
-const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
+export const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
   const emptyState = {
     content: {},
     lessons: [],
@@ -131,4 +82,51 @@ const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
   );
 };
 
-export default CourseManagementFlow;
+//TODO: fetch courses from API by courseID
+export const CoursesListing = ({ programID }) => {
+  const manageCourses = new ManageCollectionState(
+    useState([{ title: "كورس في الجدعنة" }])
+  );
+
+  const [managedCourseID, setManagedCourseID] = useState(undefined);
+  const [shouldManage, setShouldManage] = useState(false);
+
+  return (
+    <div className="coursesListing">
+      <ul>
+        {manageCourses.collection.map((c, i) => {
+          return (
+            <li key={i}>
+              <button
+                type="button"
+                className="btn btn-link"
+                onClick={() => {
+                  setManagedCourseID(c.id);
+                  setShouldManage(true);
+                }}
+              >
+                {`${i + 1} – ${c.title}`}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      <CourseManagementFlow
+        courseID={managedCourseID}
+        isShown={shouldManage}
+        onFinish={() => setShouldManage(false)}
+      />
+
+      <PlusMinusButtons
+        onPlus={() => {
+          setManagedCourseID(undefined); // new lesson.
+          setShouldManage(true);
+        }}
+        onMinus={() => {
+          if (userIsSure()) manageCourses.removeLast();
+        }}
+        minusDisabled={manageCourses.collection.length == 0}
+      />
+    </div>
+  );
+};
