@@ -19,6 +19,8 @@ export const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
 
   const [course, updateCourse] = useState(emptyState); // replace with api data
 
+  const [modalKey, setModalKey] = useState(0);
+
   const canGoNext = (index) => {
     switch (index) {
       case 0:
@@ -70,14 +72,21 @@ export const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
     },
   ];
 
+  const resetFlow = () => {
+    updateCourse(emptyState);
+    setModalKey(modalKey + 1);
+    onFinish();
+  };
+
   return (
     <FlowModal
-      flowStops={flowStops}
+      key={modalKey}
       isShown={isShown}
-      canGoNext={canGoNext}
       runBeforeNext={runBeforeNext}
-      onFinish={onFinish}
-      onCancel={onFinish}
+      canGoNext={canGoNext}
+      flowStops={flowStops}
+      onFinish={resetFlow}
+      onCancel={resetFlow}
     />
   );
 };

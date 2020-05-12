@@ -18,6 +18,8 @@ export const ProgramManagementFlow = ({ programID, isShown, onFinish }) => {
 
   const [program, updateProgram] = useState(emptyState); // replace with api data
 
+  const [modalKey, setModalKey] = useState(0);
+
   const canGoNext = (index) => {
     switch (index) {
       case 0:
@@ -65,14 +67,21 @@ export const ProgramManagementFlow = ({ programID, isShown, onFinish }) => {
     },
   ];
 
+  const resetFlow = () => {
+    updateProgram(emptyState);
+    setModalKey(modalKey + 1);
+    onFinish();
+  };
+
   return (
     <FlowModal
+      key={modalKey}
       isShown={isShown}
       runBeforeNext={runBeforeNext}
       canGoNext={canGoNext}
       flowStops={flowStops}
-      onFinish={onFinish}
-      onCancel={onFinish}
+      onFinish={resetFlow}
+      onCancel={resetFlow}
     />
   );
 };
