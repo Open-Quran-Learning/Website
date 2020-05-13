@@ -116,7 +116,7 @@ export const CoursesListing = ({ programID }) => {
         onMinus={() => {
           if (userIsSure()) manageCourses.removeLast();
         }}
-        minusDisabled={manageCourses.collection.length == 0}
+        minusDisabled={manageCourses.collection.length === 0}
       />
     </div>
   );

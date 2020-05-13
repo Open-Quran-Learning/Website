@@ -32,8 +32,6 @@ const ManageQuiz = React.memo(({ existingQuestions, update }) => {
             type: "WRITTEN",
             fullMark: 0,
           });
-          console.log(manageQuizzes.collection);
-
         }}
         onMinus={() => {
           manageQuizzes.removeLast();

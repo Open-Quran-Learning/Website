@@ -32,6 +32,8 @@ export const LessonManagementFlow = ({ lessonID, isShown, onFinish }) => {
           }
         />
       ),
+      canGoNext: () => isLessonValid(lesson.content),
+      action: () => console.debug(lesson.content),
     },
     {
       title: "إنشاء كويز",
@@ -43,6 +45,8 @@ export const LessonManagementFlow = ({ lessonID, isShown, onFinish }) => {
           }}
         />
       ),
+      canGoNext: () => isQuizValid(lesson.quiz),
+      action: () => console.debug(lesson.quiz),
     },
   ];
 
@@ -106,7 +110,7 @@ export const LessonsListing = ({ courseID }) => {
         onMinus={() => {
           if (userIsSure()) manageLessons.removeLast();
         }}
-        minusDisabled={manageLessons.collection.length == 0}
+        minusDisabled={manageLessons.collection.length === 0}
       />
     </div>
   );

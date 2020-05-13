@@ -108,7 +108,7 @@ export const ProgramsListing = ({ userID }) => {
         onMinus={() => {
           if (userIsSure()) managePrograms.removeLast();
         }}
-        minusDisabled={managePrograms.collection.length == 0}
+        minusDisabled={managePrograms.collection.length === 0}
       />
     </div>
   );
