@@ -21,26 +21,6 @@ export const LessonManagementFlow = ({ lessonID, isShown, onFinish }) => {
 
   const [modalKey, setModalKey] = useState(0);
 
-  const canGoNext = (index) => {
-    switch (index) {
-      case 0:
-        return isLessonValid(lesson.content);
-      case 1:
-        return isQuizValid(lesson.quiz);
-    }
-  };
-
-  const runBeforeNext = (index) => {
-    switch (index) {
-      case 0:
-        console.debug(lesson.content); //TODO: replace with an api call
-        break;
-      case 1:
-        console.debug(lesson.quiz); //TODO: replace with an api call
-        break;
-    }
-  };
-
   const flowStops = [
     {
       title: "إنشاء درس",
@@ -76,8 +56,6 @@ export const LessonManagementFlow = ({ lessonID, isShown, onFinish }) => {
     <FlowModal
       key={modalKey}
       isShown={isShown}
-      runBeforeNext={runBeforeNext}
-      canGoNext={canGoNext}
       flowStops={flowStops}
       onFinish={resetFlow}
       onCancel={resetFlow}

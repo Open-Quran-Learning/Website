@@ -3,14 +3,7 @@ import { SwitchTransition, CSSTransition } from "react-transition-group";
 import "./Flow.scss";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
-export const FlowModal = ({
-  flowStops,
-  isShown,
-  canGoNext,
-  runBeforeNext,
-  onFinish,
-  onCancel,
-}) => {
+export const FlowModal = ({ flowStops, isShown, onFinish, onCancel }) => {
   const [currentStop, updateCurrentStop] = useState(0);
 
   const firstStop = currentStop === 0;
@@ -32,16 +25,17 @@ export const FlowModal = ({
           <div className="navigationBtns">
             <button
               type="button"
-              disabled={!canGoNext(currentStop)}
+              disabled={!flowStops[currentStop].canGoNext()}
               className="btn btn-success"
               onClick={() => {
-                if (window.confirm("تأكيد؟"))
+                if (window.confirm("تأكيد؟")) {
+                  flowStops[currentStop].action();
                   if (lastStop) {
                     if (onFinish) onFinish();
                   } else {
-                    runBeforeNext(currentStop);
                     updateCurrentStop(currentStop + 1);
                   }
+                }
               }}
             >
               {lastStop

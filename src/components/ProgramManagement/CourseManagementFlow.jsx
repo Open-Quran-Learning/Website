@@ -21,28 +21,6 @@ export const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
 
   const [modalKey, setModalKey] = useState(0);
 
-  const canGoNext = (index) => {
-    switch (index) {
-      case 0:
-        return isCourseValid(course.content);
-      case 1:
-        return true;
-      case 2:
-        return isQuizValid(course.quiz);
-    }
-  };
-
-  const runBeforeNext = (index) => {
-    switch (index) {
-      case 0:
-        console.debug(course.content); //TODO: replace with an api call
-        break;
-      case 2:
-        console.debug(course.quiz); //TODO: replace with an api call
-        break;
-    }
-  };
-
   const flowStops = [
     {
       title: "إنشاء كورس",
@@ -54,10 +32,14 @@ export const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
           }
         />
       ),
+      canGoNext: () => isCourseValid(course.content),
+      action: () => console.debug(course.content),
     },
     {
       title: "إضافة دروس",
       content: <LessonsListing courseID={courseID} lessons={course.lessons} />,
+      canGoNext: () => true,
+      action: () => {},
     },
     {
       title: "إنشاء كويز",
@@ -69,6 +51,8 @@ export const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
           }}
         />
       ),
+      canGoNext: () => isQuizValid(course.quiz),
+      action: () => console.debug(course.quiz),
     },
   ];
 
@@ -82,8 +66,6 @@ export const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
     <FlowModal
       key={modalKey}
       isShown={isShown}
-      runBeforeNext={runBeforeNext}
-      canGoNext={canGoNext}
       flowStops={flowStops}
       onFinish={resetFlow}
       onCancel={resetFlow}
