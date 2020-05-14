@@ -1,0 +1,55 @@
+.profile {
+  background-color: #f2f2f2;
+  text-align: right;
+  padding: 2em;
+  margin: 1em auto;
+  overflow: hidden;
+  width: 70%;
+  border-radius: 1em;
+}
+.profile .image {
+  height: 10em;
+  float: right;
+  width: 10em;
+  box-shadow: 0.1em 0.1em 0.7em #ccc;
+  border-radius: 0.9em;
+}
+.profile .image img {
+  width: 100%;
+  height: 100%;
+}
+
+.profile .info {
+  margin-right: 1em;
+  float: right;
+  padding-top: 3em;
+  border-radius: 0.9em;
+}
+
+.profile .info h2 {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+  .profile {
+    padding: 1em;
+    text-align: center;
+  }
+  .profile .image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .profile .image img {
+    width: auto;
+  }
+  .profile .info {
+    margin-right: 0em;
+    float: none;
+    margin-top: 6em;
+  }
+  .profile .info h2 {
+    margin-top: 1em;
+  }
+}
