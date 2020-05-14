@@ -3,15 +3,18 @@ import { getUserData } from "../../shared/LocalStorage";
 import { ProgramsListing } from "../ProgramManagement/ProgramManagementFlow";
 import "./SupervisorPage.css";
 class SupervisorPage extends Component {
-  // constructor() {
-  //   super();
-  //   this.userdata = getUserData();
-  // }
-
-  render() {
+  constructor() {
+    super();
     this.state = {
       userdata: getUserData(),
     };
+  }
+  // componentDidMount() {
+  //   this.state = {
+  //     userdata: getUserData(),
+  //   };
+
+  render() {
     return (
       <div>
         <div className="profile">
