@@ -63,7 +63,7 @@ export function setStorage(key, value, expires) {
     }
 
     var now = Date.now();  //millisecs since epoch time, lets deal only with integer
-    var schedule = now + expires*1000; 
+    var schedule = now + expires*24*60*60*1000; 
     try {
         localStorage.setItem(key, value);
         localStorage.setItem(key + '_expiresIn', schedule);
