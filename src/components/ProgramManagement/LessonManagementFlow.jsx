@@ -19,25 +19,7 @@ export const LessonManagementFlow = ({ lessonID, isShown, onFinish }) => {
   };
   const [lesson, updateLesson] = useState(emptyState); // replace with api data
 
-  const canGoNext = (index) => {
-    switch (index) {
-      case 0:
-        return isLessonValid(lesson.content);
-      case 1:
-        return isQuizValid(lesson.quiz);
-    }
-  };
-
-  const runBeforeNext = (index) => {
-    switch (index) {
-      case 0:
-        console.debug(lesson.content); //TODO: replace with an api call
-        break;
-      case 1:
-        console.debug(lesson.quiz); //TODO: replace with an api call
-        break;
-    }
-  };
+  const [modalKey, setModalKey] = useState(0);
 
   const flowStops = [
     {
@@ -50,6 +32,8 @@ export const LessonManagementFlow = ({ lessonID, isShown, onFinish }) => {
           }
         />
       ),
+      canGoNext: () => isLessonValid(lesson.content),
+      action: () => console.debug(lesson.content),
     },
     {
       title: "إنشاء كويز",
@@ -61,17 +45,24 @@ export const LessonManagementFlow = ({ lessonID, isShown, onFinish }) => {
           }}
         />
       ),
+      canGoNext: () => isQuizValid(lesson.quiz),
+      action: () => console.debug(lesson.quiz),
     },
   ];
 
+  const resetFlow = () => {
+    updateLesson(emptyState);
+    setModalKey(modalKey + 1);
+    onFinish();
+  };
+
   return (
     <FlowModal
+      key={modalKey}
       isShown={isShown}
-      runBeforeNext={runBeforeNext}
-      canGoNext={canGoNext}
       flowStops={flowStops}
-      onFinish={onFinish}
-      onCancel={onFinish}
+      onFinish={resetFlow}
+      onCancel={resetFlow}
     />
   );
 };
@@ -119,7 +110,7 @@ export const LessonsListing = ({ courseID }) => {
         onMinus={() => {
           if (userIsSure()) manageLessons.removeLast();
         }}
-        minusDisabled={manageLessons.collection.length == 0}
+        minusDisabled={manageLessons.collection.length === 0}
       />
     </div>
   );

@@ -19,27 +19,7 @@ export const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
 
   const [course, updateCourse] = useState(emptyState); // replace with api data
 
-  const canGoNext = (index) => {
-    switch (index) {
-      case 0:
-        return isCourseValid(course.content);
-      case 1:
-        return true;
-      case 2:
-        return isQuizValid(course.quiz);
-    }
-  };
-
-  const runBeforeNext = (index) => {
-    switch (index) {
-      case 0:
-        console.debug(course.content); //TODO: replace with an api call
-        break;
-      case 2:
-        console.debug(course.quiz); //TODO: replace with an api call
-        break;
-    }
-  };
+  const [modalKey, setModalKey] = useState(0);
 
   const flowStops = [
     {
@@ -52,10 +32,14 @@ export const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
           }
         />
       ),
+      canGoNext: () => isCourseValid(course.content),
+      action: () => console.debug(course.content),
     },
     {
       title: "إضافة دروس",
       content: <LessonsListing courseID={courseID} lessons={course.lessons} />,
+      canGoNext: () => true,
+      action: () => {},
     },
     {
       title: "إنشاء كويز",
@@ -67,17 +51,24 @@ export const CourseManagementFlow = ({ courseID, isShown, onFinish }) => {
           }}
         />
       ),
+      canGoNext: () => isQuizValid(course.quiz),
+      action: () => console.debug(course.quiz),
     },
   ];
 
+  const resetFlow = () => {
+    updateCourse(emptyState);
+    setModalKey(modalKey + 1);
+    onFinish();
+  };
+
   return (
     <FlowModal
-      flowStops={flowStops}
+      key={modalKey}
       isShown={isShown}
-      canGoNext={canGoNext}
-      runBeforeNext={runBeforeNext}
-      onFinish={onFinish}
-      onCancel={onFinish}
+      flowStops={flowStops}
+      onFinish={resetFlow}
+      onCancel={resetFlow}
     />
   );
 };
@@ -125,7 +116,7 @@ export const CoursesListing = ({ programID }) => {
         onMinus={() => {
           if (userIsSure()) manageCourses.removeLast();
         }}
-        minusDisabled={manageCourses.collection.length == 0}
+        minusDisabled={manageCourses.collection.length === 0}
       />
     </div>
   );

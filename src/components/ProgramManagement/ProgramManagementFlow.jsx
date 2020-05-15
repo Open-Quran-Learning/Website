@@ -18,39 +18,20 @@ export const ProgramManagementFlow = ({ programID, isShown, onFinish }) => {
 
   const [program, updateProgram] = useState(emptyState); // replace with api data
 
-  const canGoNext = (index) => {
-    switch (index) {
-      case 0:
-        return true; //TODO: handle program creation
-      case 1:
-        return true;
-      case 2:
-        return isQuizValid(program.assessmentQuiz);
-    }
-  };
-
-  const runBeforeNext = (index) => {
-    switch (index) {
-      case 0:
-        console.debug("program"); //TODO: replace with an api call
-        break;
-      case 1:
-        console.debug("courses"); //TODO: replace with an api call
-        break;
-      case 2:
-        console.debug(program.quiz); //TODO: replace with an api call
-        break;
-    }
-  };
+  const [modalKey, setModalKey] = useState(0);
 
   const flowStops = [
     {
       title: "إنشاء برنامج جديد",
       content: <ProgramCreation />,
+      canGoNext: () => true,
+      action: () => console.debug("program"),
     },
     {
       title: "الكورسات",
       content: <CoursesListing programID={programID} />,
+      canGoNext: () => true,
+      action: () => console.debug("courses"),
     },
     {
       title: "امتحان القبول",
@@ -62,17 +43,24 @@ export const ProgramManagementFlow = ({ programID, isShown, onFinish }) => {
           }}
         />
       ),
+      canGoNext: () => isQuizValid(program.assessmentQuiz),
+      action: () => console.debug(program.assessmentQuiz),
     },
   ];
 
+  const resetFlow = () => {
+    updateProgram(emptyState);
+    setModalKey(modalKey + 1);
+    onFinish();
+  };
+
   return (
     <FlowModal
+      key={modalKey}
       isShown={isShown}
-      runBeforeNext={runBeforeNext}
-      canGoNext={canGoNext}
       flowStops={flowStops}
-      onFinish={onFinish}
-      onCancel={onFinish}
+      onFinish={resetFlow}
+      onCancel={resetFlow}
     />
   );
 };
@@ -120,7 +108,7 @@ export const ProgramsListing = ({ userID }) => {
         onMinus={() => {
           if (userIsSure()) managePrograms.removeLast();
         }}
-        minusDisabled={managePrograms.collection.length == 0}
+        minusDisabled={managePrograms.collection.length === 0}
       />
     </div>
   );
